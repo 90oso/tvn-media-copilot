@@ -1,0 +1,38 @@
+{
+  "generated_at_utc": "2026-10-06T22:21:08.882251+00:00",
+  "labeled_items": 4,
+  "metrics": {
+    "human_column": "cluster_humano",
+    "baseline_column": "cluster_baseline",
+    "semantic_column": "cluster_semantic",
+    "baseline": {
+      "n_items": 4,
+      "n_pairs": 6,
+      "tp": 1,
+      "fp": 0,
+      "fn": 2,
+      "tn": 3,
+      "precision": 1.0,
+      "recall": 0.3333,
+      "f1": 0.5
+    },
+    "semantic": {
+      "n_items": 4,
+      "n_pairs": 6,
+      "tp": 3,
+      "fp": 0,
+      "fn": 0,
+      "tn": 3,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "delta_semantic_vs_baseline": {
+      "precision": 0.0,
+      "recall": 0.6667,
+      "f1": 0.5
+    }
+  },
+  "metric_definition": "Evaluación par-a-par: para cada par de noticias etiquetadas, se compara si humano y sistema consideran que pertenecen al mismo evento.",
+  "warning": "No usar esta métrica como resultado final si las etiquetas no fueron producidas mediante revisión humana."
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+<title>TVN Panamá</title>
+<language>es</language>
+<item>
+<title>Panamá prueba noticia dentro del rango</title>
+<link>https://www.tvn-2.com/prueba/noticia-1?utm_source=test</link>
+<pubDate>Mon, 01 Jun 2026 12:00:00 +0000</pubDate>
+</item>
+<item>
+<title>Noticia fuera de rango</title>
+<link>https://www.tvn-2.com/prueba/noticia-antigua</link>
+<pubDate>Mon, 01 Sep 2025 12:00:00 +0000</pubDate>
+</item>
+</channel>
+</rss>

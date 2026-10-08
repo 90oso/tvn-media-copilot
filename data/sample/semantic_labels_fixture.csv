@@ -1,0 +1,5 @@
+id_noticia,tema_humano,cluster_humano,etiquetador,nota
+S1,logística/Canal,H1,QA Demo,mismo evento Canal
+S2,logística/Canal,H1,QA Demo,mismo evento Canal
+S3,logística/Canal,H1,QA Demo,mismo evento Canal
+S4,economía,H2,QA Demo,evento distinto

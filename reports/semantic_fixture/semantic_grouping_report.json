@@ -1,0 +1,15 @@
+{
+  "generated_at_utc": "2026-10-06T22:21:05.171999+00:00",
+  "method": "embedding-cosine-connected-components-v0.1",
+  "input": "data/sample/semantic_fixture.csv",
+  "embeddings": "data/sample/semantic_embeddings_fixture.npz",
+  "rows": 4,
+  "clusters_total": 2,
+  "clusters_with_2_or_more": 1,
+  "parameters": {
+    "similarity_threshold": 0.95,
+    "max_days_apart": 2,
+    "require_same_topic_when_available": false
+  },
+  "warning": "El umbral es una propuesta inicial del equipo. Debe calibrarse contra cluster_humano."
+}

@@ -1,0 +1,4 @@
+pais_iso3,indicador_id,anio,valor,unidad,fuente_url,fecha_extraccion,licencia
+PAN,NY.GDP.MKTP.KD.ZG,2024,2.9,porcentaje,https://api.worldbank.org/,2026-10-05T18:00:00Z,CC BY 4.0
+PAN,FP.CPI.TOTL.ZG,2024,,porcentaje,https://api.worldbank.org/,2026-10-05T18:00:00Z,CC BY 4.0
+CRI,NY.GDP.MKTP.KD.ZG,2024,4.3,porcentaje,https://api.worldbank.org/,FECHA_INVALIDA,CC BY 4.0

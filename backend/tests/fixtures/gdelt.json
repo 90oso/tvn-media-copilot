@@ -1,0 +1,11 @@
+{
+  "articles": [
+    {
+      "url": "https://example.org/a?utm_source=x",
+      "title": "Canal de Panamá reporta cambios",
+      "seendate": "20260601T140000Z",
+      "domain": "example.org",
+      "language": "Spanish"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "mode": "digital",
+  "draft": {
+    "copy": "Titulares de prensa reportan posturas contradictorias sobre el futuro de la mina de cobre en Panamá. Por un lado, varias fuentes indican que se recomendaría la reapertura de la mina, potencialmente mediante una alianza estatal. Por otro lado, un reporte señala que una comisión recomienda su cierre ordenado. Debido a que la evidencia disponible se limita a titulares y metadatos, se requiere verificar el contenido completo de las publicaciones e informes oficiales.",
+    "claims": [
+      {
+        "type": "declaracion",
+        "text": "Reportes de prensa señalan que se recomendaría la reapertura de la mina de cobre en Panamá, potencialmente a través de una alianza estatal.",
+        "evidence_ids": [
+          "NEWS-6baeb58c6dff",
+          "NEWS-e5b60fd1f9dc",
+          "NEWS-55a045895ca5",
+          "NEWS-9f059d172c75",
+          "NEWS-3904a34fd189",
+          "NEWS-e0a74582959b"
+        ]
+      },
+      {
+        "type": "declaracion",
+        "text": "Un reporte de prensa afirma que una comisión recomienda el cierre ordenado de la mina de cobre de Donoso en Panamá.",
+        "evidence_ids": [
+          "NEWS-7c6e1e0215f0"
+        ]
+      }
+    ],
+    "sources_used": [
+      "NEWS-6baeb58c6dff",
+      "NEWS-e5b60fd1f9dc",
+      "NEWS-55a045895ca5",
+      "NEWS-9f059d172c75",
+      "NEWS-3904a34fd189",
+      "NEWS-e0a74582959b",
+      "NEWS-7c6e1e0215f0"
+    ],
+    "pending_checks": [
+      "Aclarar la contradicción entre los titulares que recomiendan la reactivación/apertura de la mina y aquel que reporta la recomendación de un cierre ordenado.",
+      "Acceder al cuerpo completo de las noticias y documentos oficiales, ya que la evidencia actual se basa únicamente en titulares y metadatos."
+    ]
+  },
+  "text": "COPY DIGITAL\nTitulares de prensa reportan posturas contradictorias sobre el futuro de la mina de cobre en Panamá. Por un lado, varias fuentes indican que se recomendaría la reapertura de la mina, potencialmente mediante una alianza estatal. Por otro lado, un reporte señala que una comisión recomienda su cierre ordenado. Debido a que la evidencia disponible se limita a titulares y metadatos, se requiere verificar el contenido completo de las publicaciones e informes oficiales.\n\nAFIRMACIONES TRAZABLES\n- DECLARACION: Reportes de prensa señalan que se recomendaría la reapertura de la mina de cobre en Panamá, potencialmente a través de una alianza estatal. [NEWS-6baeb58c6dff] [NEWS-e5b60fd1f9dc] [NEWS-55a045895ca5] [NEWS-9f059d172c75] [NEWS-3904a34fd189] [NEWS-e0a74582959b]\n- DECLARACION: Un reporte de prensa afirma que una comisión recomienda el cierre ordenado de la mina de cobre de Donoso en Panamá. [NEWS-7c6e1e0215f0]\n\nVERIFICACIONES PENDIENTES\n- Aclarar la contradicción entre los titulares que recomiendan la reactivación/apertura de la mina y aquel que reporta la recomendación de un cierre ordenado.\n- Acceder al cuerpo completo de las noticias y documentos oficiales, ya que la evidencia actual se basa únicamente en titulares y metadatos.",
+  "quality": {
+    "claim_count": 2,
+    "claims_with_citations": 2,
+    "citation_coverage": 1.0,
+    "invalid_evidence_ids": [],
+    "contradictions_in_evidence": 0,
+    "main_text_word_count": 72,
+    "word_limit": 80,
+    "within_word_limit": true
+  },
+  "provider": "gemini",
+  "model": "gemini-3.6-flash",
+  "attempts": 1,
+  "generation_rounds": 1,
+  "evidence_fingerprint": "5c13d1884d71fcb9"
+}

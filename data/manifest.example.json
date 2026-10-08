@@ -1,0 +1,12 @@
+{
+  "version": "media-mvp-v0.1",
+  "fecha_corte_UTC": "YYYY-MM-DDTHH:MM:SSZ",
+  "consultas": [],
+  "cantidad_por_archivo": {
+    "noticias.csv": null,
+    "indicadores.csv": null
+  },
+  "licencia_condiciones": {},
+  "sha256": {},
+  "transformaciones": []
+}
