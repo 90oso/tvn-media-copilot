@@ -1,13 +1,13 @@
 {
   "mode": "brief",
   "draft": {
-    "proposed_title": "Reportes contradictorios sobre las recomendaciones para la mina de cobre en Panamá",
-    "public_interest": "El futuro operativo y legal de la mina de Cobre Panamá representa un tema de alto impacto económico, ambiental y político para el país.",
-    "summary": "Diversos titulares de medios internacionales y locales informan sobre las recomendaciones emitidas respecto al futuro de la mina de cobre en Panamá. Por un lado, reportes basados en fuentes y notas de prensa indican que el gobierno o una comisión gubernamental recomendará la apertura y reactivación de la mina de Cobre Panamá, potencialmente mediante una alianza estatal. Por otro lado, un titular reporta que una comisión recomienda el cierre ordenado de la mina en Donoso. Dado que toda la evidencia disponible proviene únicamente de titulares y metadatos de noticias, no se cuenta con los detalles completos del contenido de dichos informes ni el alcance exacto de las propuestas.",
+    "proposed_title": "Contradicciones en reportes sobre el futuro de la mina de cobre en Panamá entre reapertura y cierre ordenado",
+    "public_interest": "La decisión gubernamental sobre la mina de cobre Cobre Panamá en Donoso implica importantes repercusiones económicas, ambientales y de política pública para el país.",
+    "summary": "Titulares de diversos medios internacionales y locales presentan versiones divergentes sobre las recomendaciones oficiales para la mina de cobre en Panamá. Por un lado, múltiples publicaciones señalan que fuentes gubernamentales o una comisión recomiendan reactivar o reabrir la mina, mencionando una posible alianza con el Estado. Por otro lado, un reporte distinto sostiene que una comisión recomienda el cierre ordenado de la mina de Donoso. Dado que toda la evidencia proviene exclusivamente de titulares y metadatos, no se cuenta con el texto completo de los artículos para verificar los detalles de cada informe.",
     "claims": [
       {
         "type": "declaracion",
-        "text": "Fuentes citadas por medios de comunicación indican que el gobierno de Panamá recomendará reiniciar la mina de cobre a través de una alianza estatal.",
+        "text": "Reportes en medios de comunicación señalan que el gobierno de Panamá recomendaría el reinicio de la mina de cobre mediante una alianza estatal.",
         "evidence_ids": [
           "NEWS-6baeb58c6dff",
           "NEWS-e5b60fd1f9dc",
@@ -17,7 +17,7 @@
       },
       {
         "type": "declaracion",
-        "text": "Titulares de medios señalan que una comisión gubernamental recomienda la apertura y reactivación de la mina de Cobre Panamá.",
+        "text": "Titulares en español y portugués informan que una comisión gubernamental o recomendación propone la apertura y reactivación de la mina Cobre Panamá.",
         "evidence_ids": [
           "NEWS-3904a34fd189",
           "NEWS-e0a74582959b"
@@ -25,16 +25,25 @@
       },
       {
         "type": "declaracion",
-        "text": "Un reporte de prensa afirma que una comisión recomienda el cierre ordenado de la mina de cobre de Donoso en Panamá.",
+        "text": "Un reporte de prensa afirma que una comisión recomienda el cierre ordenado de la mina de cobre de Donoso.",
         "evidence_ids": [
+          "NEWS-7c6e1e0215f0"
+        ]
+      },
+      {
+        "type": "inferencia",
+        "text": "Existen contradicciones directas entre las coberturas periodísticas sobre si la recomendación gubernamental es el reinicio o el cierre ordenado de la mina.",
+        "evidence_ids": [
+          "NEWS-3904a34fd189",
+          "NEWS-e0a74582959b",
           "NEWS-7c6e1e0215f0"
         ]
       }
     ],
     "investigation_questions": [
-      "¿Existe un documento oficial de la comisión que aclare si la recomendación es la reapertura o el cierre ordenado de la mina de cobre?",
-      "¿Cuáles son las condiciones y términos propuestos para la eventual alianza estatal mencionada en los reportes?",
-      "¿Cuáles son los plazos y el impacto ambiental y económico contemplados en las recomendaciones oficiales?"
+      "¿Cuál es la recomendación oficial y definitiva vertida en el informe de la comisión gubernamental sobre la mina de cobre en Donoso?",
+      "¿A qué se debe la discrepancia entre las noticias que anuncian una reactivación con alianza estatal y la que reporta un cierre ordenado?",
+      "¿Cuáles son los términos específicos de la recomendación respecto a la participación estatal en la mina de Cobre Panamá?"
     ],
     "sources_used": [
       "NEWS-6baeb58c6dff",
@@ -46,24 +55,25 @@
       "NEWS-7c6e1e0215f0"
     ],
     "pending_checks": [
-      "Aclarar la discrepancia entre las noticias que afirman una recomendación de reapertura/reactivación y aquella que sostiene una recomendación de cierre ordenado.",
-      "Obtener el texto completo de los artículos y de los informes oficiales, dado que la evidencia actual proviene únicamente de titulares y metadatos."
+      "Acceder al cuerpo completo de las noticias, ya que la evidencia actual se limita únicamente a titulares y metadatos.",
+      "Aclarar la contradicción entre el reporte de cierre ordenado (telesurtv.net) y los reportes de reactivación o apertura.",
+      "Obtener el documento o comunicado oficial emitido por el Gobierno de Panamá o la comisión correspondiente."
     ]
   },
-  "text": "TÍTULO PROPUESTO\nReportes contradictorios sobre las recomendaciones para la mina de cobre en Panamá\n\nINTERÉS PÚBLICO\nEl futuro operativo y legal de la mina de Cobre Panamá representa un tema de alto impacto económico, ambiental y político para el país.\n\nBRIEF\nDiversos titulares de medios internacionales y locales informan sobre las recomendaciones emitidas respecto al futuro de la mina de cobre en Panamá. Por un lado, reportes basados en fuentes y notas de prensa indican que el gobierno o una comisión gubernamental recomendará la apertura y reactivación de la mina de Cobre Panamá, potencialmente mediante una alianza estatal. Por otro lado, un titular reporta que una comisión recomienda el cierre ordenado de la mina en Donoso. Dado que toda la evidencia disponible proviene únicamente de titulares y metadatos de noticias, no se cuenta con los detalles completos del contenido de dichos informes ni el alcance exacto de las propuestas.\n\nAFIRMACIONES TRAZABLES\n- DECLARACION: Fuentes citadas por medios de comunicación indican que el gobierno de Panamá recomendará reiniciar la mina de cobre a través de una alianza estatal. [NEWS-6baeb58c6dff] [NEWS-e5b60fd1f9dc] [NEWS-55a045895ca5] [NEWS-9f059d172c75]\n- DECLARACION: Titulares de medios señalan que una comisión gubernamental recomienda la apertura y reactivación de la mina de Cobre Panamá. [NEWS-3904a34fd189] [NEWS-e0a74582959b]\n- DECLARACION: Un reporte de prensa afirma que una comisión recomienda el cierre ordenado de la mina de cobre de Donoso en Panamá. [NEWS-7c6e1e0215f0]\n\nPREGUNTAS DE INVESTIGACIÓN\n1. ¿Existe un documento oficial de la comisión que aclare si la recomendación es la reapertura o el cierre ordenado de la mina de cobre?\n2. ¿Cuáles son las condiciones y términos propuestos para la eventual alianza estatal mencionada en los reportes?\n3. ¿Cuáles son los plazos y el impacto ambiental y económico contemplados en las recomendaciones oficiales?\n\nVERIFICACIONES PENDIENTES\n- Aclarar la discrepancia entre las noticias que afirman una recomendación de reapertura/reactivación y aquella que sostiene una recomendación de cierre ordenado.\n- Obtener el texto completo de los artículos y de los informes oficiales, dado que la evidencia actual proviene únicamente de titulares y metadatos.",
+  "text": "TÍTULO PROPUESTO\nContradicciones en reportes sobre el futuro de la mina de cobre en Panamá entre reapertura y cierre ordenado\n\nINTERÉS PÚBLICO\nLa decisión gubernamental sobre la mina de cobre Cobre Panamá en Donoso implica importantes repercusiones económicas, ambientales y de política pública para el país.\n\nBRIEF\nTitulares de diversos medios internacionales y locales presentan versiones divergentes sobre las recomendaciones oficiales para la mina de cobre en Panamá. Por un lado, múltiples publicaciones señalan que fuentes gubernamentales o una comisión recomiendan reactivar o reabrir la mina, mencionando una posible alianza con el Estado. Por otro lado, un reporte distinto sostiene que una comisión recomienda el cierre ordenado de la mina de Donoso. Dado que toda la evidencia proviene exclusivamente de titulares y metadatos, no se cuenta con el texto completo de los artículos para verificar los detalles de cada informe.\n\nAFIRMACIONES TRAZABLES\n- DECLARACION: Reportes en medios de comunicación señalan que el gobierno de Panamá recomendaría el reinicio de la mina de cobre mediante una alianza estatal. [NEWS-6baeb58c6dff] [NEWS-e5b60fd1f9dc] [NEWS-55a045895ca5] [NEWS-9f059d172c75]\n- DECLARACION: Titulares en español y portugués informan que una comisión gubernamental o recomendación propone la apertura y reactivación de la mina Cobre Panamá. [NEWS-3904a34fd189] [NEWS-e0a74582959b]\n- DECLARACION: Un reporte de prensa afirma que una comisión recomienda el cierre ordenado de la mina de cobre de Donoso. [NEWS-7c6e1e0215f0]\n- INFERENCIA: Existen contradicciones directas entre las coberturas periodísticas sobre si la recomendación gubernamental es el reinicio o el cierre ordenado de la mina. [NEWS-3904a34fd189] [NEWS-e0a74582959b] [NEWS-7c6e1e0215f0]\n\nPREGUNTAS DE INVESTIGACIÓN\n1. ¿Cuál es la recomendación oficial y definitiva vertida en el informe de la comisión gubernamental sobre la mina de cobre en Donoso?\n2. ¿A qué se debe la discrepancia entre las noticias que anuncian una reactivación con alianza estatal y la que reporta un cierre ordenado?\n3. ¿Cuáles son los términos específicos de la recomendación respecto a la participación estatal en la mina de Cobre Panamá?\n\nVERIFICACIONES PENDIENTES\n- Acceder al cuerpo completo de las noticias, ya que la evidencia actual se limita únicamente a titulares y metadatos.\n- Aclarar la contradicción entre el reporte de cierre ordenado (telesurtv.net) y los reportes de reactivación o apertura.\n- Obtener el documento o comunicado oficial emitido por el Gobierno de Panamá o la comisión correspondiente.",
   "quality": {
-    "claim_count": 3,
-    "claims_with_citations": 3,
+    "claim_count": 4,
+    "claims_with_citations": 4,
     "citation_coverage": 1.0,
     "invalid_evidence_ids": [],
     "contradictions_in_evidence": 0,
-    "main_text_word_count": 108,
+    "main_text_word_count": 93,
     "word_limit": 250,
     "within_word_limit": true
   },
   "provider": "gemini",
   "model": "gemini-3.6-flash",
-  "attempts": 3,
+  "attempts": 1,
   "generation_rounds": 1,
   "evidence_fingerprint": "c7fe0b4899710fc4"
 }

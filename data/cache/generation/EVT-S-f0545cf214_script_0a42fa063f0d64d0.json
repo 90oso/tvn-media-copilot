@@ -1,11 +1,11 @@
 {
   "mode": "script",
   "draft": {
-    "script": "Atención a la información sobre el sector minero en Panamá. Reportes de prensa basados en titulares señalan que el gobierno panameño recomendaría la reapertura y reactivación de la mina Cobre Panamá, considerando una alianza estatal. Sin embargo, existe una contradicción directa en la cobertura mediática: mientras varios portales informan sobre la recomendación de apertura, un reporte de TeleSUR afirma que una comisión recomienda el cierre ordenado de la mina de cobre de Donoso. Debido a que la evidencia disponible consta únicamente de titulares y metadatos, se requiere verificación adicional para determinar cuál es la recomendación oficial exacta.",
+    "script": "Reportes recientes basados en titulares de prensa presentan visiones contrapuestas sobre el futuro de la minería de cobre en Panamá. Por un lado, diversas fuentes internacionales y locales señalan que el gobierno o una comisión gubernamental recomendaría reabrir o reactivar la mina Cobre Panamá, potencialmente mediante una asociación o alianza estatal. Sin embargo, otra fuente sostiene que una comisión ministerial ha recomendado un cierre ordenado de la mina ubicada en Donoso. Al disponer únicamente de los titulares y metadatos de las noticias, resulta indispensable confirmar el contenido íntegro de los reportes para esclarecer esta contradicción y definir si la postura oficial se orienta hacia la reactivación o hacia el cierre definitivo.",
     "claims": [
       {
         "type": "hecho",
-        "text": "Titulares de diversos medios internacionales e informativos señalan que el gobierno o una comisión recomendaría reabrir o reactivar la mina de cobre en Panamá, contemplando una alianza estatal.",
+        "text": "Titulares de diversos medios internacionales y locales indican que el gobierno de Panamá o una comisión gubernamental recomendaría reactivar o reabrir la mina Cobre Panamá, posiblemente mediante una alianza con el Estado.",
         "evidence_ids": [
           "NEWS-6baeb58c6dff",
           "NEWS-e5b60fd1f9dc",
@@ -17,16 +17,21 @@
       },
       {
         "type": "hecho",
-        "text": "El titular del medio TeleSUR sostiene que una comisión recomienda el cierre ordenado de la mina de cobre de Donoso en Panamá.",
+        "text": "Un titular reporta que una comisión recomienda el cierre ordenado de la mina de cobre de Donoso en Panamá.",
         "evidence_ids": [
           "NEWS-7c6e1e0215f0"
         ]
       },
       {
         "type": "inferencia",
-        "text": "Existe una contradicción abierta entre la información que reporta la recomendación de apertura/reactivación y la que señala una propuesta de cierre ordenado.",
+        "text": "Existe una discrepancia entre los titulares recopilados sobre si la recomendación gubernamental es la reapertura mediante alianza estatal o el cierre ordenado del yacimiento.",
         "evidence_ids": [
+          "NEWS-6baeb58c6dff",
+          "NEWS-e5b60fd1f9dc",
+          "NEWS-55a045895ca5",
+          "NEWS-9f059d172c75",
           "NEWS-3904a34fd189",
+          "NEWS-e0a74582959b",
           "NEWS-7c6e1e0215f0"
         ]
       }
@@ -41,26 +46,26 @@
       "NEWS-7c6e1e0215f0"
     ],
     "pending_checks": [
-      "Acceder al texto completo de las noticias para contrastar las fuentes oficiales consultadas por los medios, ya que actualmente solo se cuenta con titulares.",
-      "Aclarar la contradicción entre los reportes de apertura/reactivación y el reporte de cierre ordenado de la mina.",
-      "Confirmar si las recomendaciones corresponden a la misma comisión gubernamental o a entidades distintas."
+      "Aclarar la contradicción directa entre las notas que sugieren reapertura/reactivación y la que señala recomendación de cierre ordenado.",
+      "Acceder al contenido completo de los artículos, ya que la evidencia actual se limita exclusivamente a titulares y metadatos.",
+      "Verificar los detalles específicos de la recomendación de la comisión, fechas oficiales y términos de una eventual participación estatal."
     ]
   },
-  "text": "GUION 45–60 s\nAtención a la información sobre el sector minero en Panamá. Reportes de prensa basados en titulares señalan que el gobierno panameño recomendaría la reapertura y reactivación de la mina Cobre Panamá, considerando una alianza estatal. Sin embargo, existe una contradicción directa en la cobertura mediática: mientras varios portales informan sobre la recomendación de apertura, un reporte de TeleSUR afirma que una comisión recomienda el cierre ordenado de la mina de cobre de Donoso. Debido a que la evidencia disponible consta únicamente de titulares y metadatos, se requiere verificación adicional para determinar cuál es la recomendación oficial exacta.\n\nAFIRMACIONES TRAZABLES\n- HECHO: Titulares de diversos medios internacionales e informativos señalan que el gobierno o una comisión recomendaría reabrir o reactivar la mina de cobre en Panamá, contemplando una alianza estatal. [NEWS-6baeb58c6dff] [NEWS-e5b60fd1f9dc] [NEWS-55a045895ca5] [NEWS-9f059d172c75] [NEWS-3904a34fd189] [NEWS-e0a74582959b]\n- HECHO: El titular del medio TeleSUR sostiene que una comisión recomienda el cierre ordenado de la mina de cobre de Donoso en Panamá. [NEWS-7c6e1e0215f0]\n- INFERENCIA: Existe una contradicción abierta entre la información que reporta la recomendación de apertura/reactivación y la que señala una propuesta de cierre ordenado. [NEWS-3904a34fd189] [NEWS-7c6e1e0215f0]\n\nVERIFICACIONES PENDIENTES\n- Acceder al texto completo de las noticias para contrastar las fuentes oficiales consultadas por los medios, ya que actualmente solo se cuenta con titulares.\n- Aclarar la contradicción entre los reportes de apertura/reactivación y el reporte de cierre ordenado de la mina.\n- Confirmar si las recomendaciones corresponden a la misma comisión gubernamental o a entidades distintas.",
+  "text": "GUION 45–60 s\nReportes recientes basados en titulares de prensa presentan visiones contrapuestas sobre el futuro de la minería de cobre en Panamá. Por un lado, diversas fuentes internacionales y locales señalan que el gobierno o una comisión gubernamental recomendaría reabrir o reactivar la mina Cobre Panamá, potencialmente mediante una asociación o alianza estatal. Sin embargo, otra fuente sostiene que una comisión ministerial ha recomendado un cierre ordenado de la mina ubicada en Donoso. Al disponer únicamente de los titulares y metadatos de las noticias, resulta indispensable confirmar el contenido íntegro de los reportes para esclarecer esta contradicción y definir si la postura oficial se orienta hacia la reactivación o hacia el cierre definitivo.\n\nAFIRMACIONES TRAZABLES\n- HECHO: Titulares de diversos medios internacionales y locales indican que el gobierno de Panamá o una comisión gubernamental recomendaría reactivar o reabrir la mina Cobre Panamá, posiblemente mediante una alianza con el Estado. [NEWS-6baeb58c6dff] [NEWS-e5b60fd1f9dc] [NEWS-55a045895ca5] [NEWS-9f059d172c75] [NEWS-3904a34fd189] [NEWS-e0a74582959b]\n- HECHO: Un titular reporta que una comisión recomienda el cierre ordenado de la mina de cobre de Donoso en Panamá. [NEWS-7c6e1e0215f0]\n- INFERENCIA: Existe una discrepancia entre los titulares recopilados sobre si la recomendación gubernamental es la reapertura mediante alianza estatal o el cierre ordenado del yacimiento. [NEWS-6baeb58c6dff] [NEWS-e5b60fd1f9dc] [NEWS-55a045895ca5] [NEWS-9f059d172c75] [NEWS-3904a34fd189] [NEWS-e0a74582959b] [NEWS-7c6e1e0215f0]\n\nVERIFICACIONES PENDIENTES\n- Aclarar la contradicción directa entre las notas que sugieren reapertura/reactivación y la que señala recomendación de cierre ordenado.\n- Acceder al contenido completo de los artículos, ya que la evidencia actual se limita exclusivamente a titulares y metadatos.\n- Verificar los detalles específicos de la recomendación de la comisión, fechas oficiales y términos de una eventual participación estatal.",
   "quality": {
     "claim_count": 3,
     "claims_with_citations": 3,
     "citation_coverage": 1.0,
     "invalid_evidence_ids": [],
     "contradictions_in_evidence": 0,
-    "main_text_word_count": 97,
-    "estimated_duration_seconds": 41.6,
+    "main_text_word_count": 111,
+    "estimated_duration_seconds": 47.6,
     "target_duration_seconds": "45-60",
-    "within_duration_target": false
+    "within_duration_target": true
   },
   "provider": "gemini",
   "model": "gemini-3.6-flash",
-  "attempts": 4,
+  "attempts": 3,
   "generation_rounds": 1,
   "evidence_fingerprint": "0a42fa063f0d64d0"
 }
