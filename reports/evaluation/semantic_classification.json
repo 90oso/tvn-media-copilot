@@ -1,0 +1,28 @@
+{
+  "rows": 1728,
+  "baseline_classified": 241,
+  "semantic_classified": 554,
+  "final_classified": 591,
+  "final_unclassified": 1137,
+  "final_coverage": 0.342,
+  "baseline_semantic_conflicts": 4,
+  "seed_counts": {
+    "economía": 68,
+    "logística/Canal": 100,
+    "turismo": 52,
+    "servicios públicos": 6,
+    "eventos naturales": 8,
+    "regulación": 7
+  },
+  "config": {
+    "min_similarity": 0.45,
+    "min_margin": 0.04,
+    "min_seed_items_per_topic": 5
+  },
+  "warning": "Los centroides se construyen a partir de etiquetas baseline, por lo que esta etapa es una propuesta de ampliación semántica y debe validarse contra tema_humano antes de presentarla como métrica final.",
+  "human_evaluation": {
+    "available": false,
+    "reason": "No hay suficientes etiquetas tema_humano válidas.",
+    "n_labeled": 1
+  }
+}

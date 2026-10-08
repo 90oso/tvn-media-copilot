@@ -1,0 +1,17 @@
+{
+  "generated_at_utc": "2026-10-08T00:15:17.060581+00:00",
+  "method": "embedding-cosine-connected-components-v0.1",
+  "input": "data\\processed\\noticias_grouped_baseline.csv",
+  "embeddings": "data\\embeddings\\news_embeddings.npz",
+  "rows": 1728,
+  "clusters_total": 1291,
+  "clusters_with_2_or_more": 148,
+  "parameters": {
+    "similarity_threshold": 0.78,
+    "max_days_apart": 3,
+    "require_same_topic_when_available": false
+  },
+  "pairs_compared_after_temporal_filter": 166178,
+  "pairs_skipped_outside_temporal_window": 1325950,
+  "warning": "El umbral es una propuesta inicial del equipo. Debe calibrarse contra cluster_humano. La detección solo se usa como fallback temporal cuando falta publicación."
+}

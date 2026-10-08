@@ -1,0 +1,11 @@
+{
+  "model_name": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "count": 1728,
+  "dimensions": 384,
+  "source_path": "data\\processed\\noticias_grouped_baseline.csv",
+  "source_sha256": "0ea96b2408ef0fbfef1280724588f479cd0a2177dce201c4e01022740fbd5575",
+  "text_fields": [
+    "titulo"
+  ],
+  "note": "Artefacto congelado para reproducibilidad. No contiene cuerpos completos de artículos."
+}

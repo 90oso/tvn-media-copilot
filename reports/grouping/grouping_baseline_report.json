@@ -1,0 +1,28 @@
+{
+  "generated_at_utc": "2026-10-07T20:09:29.286651+00:00",
+  "baseline_version": "tfidf-char-cosine-v0.1",
+  "input": "data\\processed\\noticias_classified_baseline.csv",
+  "rows": 1728,
+  "clusters_total": 1370,
+  "clusters_with_2_or_more": 134,
+  "parameters": {
+    "similarity_threshold": 0.42,
+    "max_days_apart": 3,
+    "require_same_topic_when_available": true
+  },
+  "method": [
+    "TF-IDF de caracteres 3-5 sobre título",
+    "similitud coseno",
+    "ventana temporal sobre fecha_publicacion o fecha_deteccion como fallback operativo",
+    "compatibilidad temática cuando está disponible",
+    "componentes conectados"
+  ],
+  "pairs_compared_after_temporal_filter": 128406,
+  "pairs_skipped_outside_temporal_window": 1015422,
+  "limitations": [
+    "Los umbrales son una propuesta del equipo y deben calibrarse con etiquetas humanas.",
+    "El baseline usa solo el título.",
+    "Un cluster no prueba verdad ni corroboración independiente.",
+    "La procedencia se cuenta aparte para evitar confundir repetición con corroboración."
+  ]
+}

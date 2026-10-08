@@ -1,0 +1,7 @@
+id_noticia_a,id_noticia_b,similarity_semantic,date_compatible,topic_compatible,accepted_same_event
+S1,S2,0.998701,True,True,True
+S1,S3,0.996546,True,True,True
+S1,S4,0.0,True,True,False
+S2,S3,0.999483,True,True,True
+S2,S4,0.050954,True,True,False
+S3,S4,0.083045,True,True,False

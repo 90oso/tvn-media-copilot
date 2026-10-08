@@ -1,0 +1,5754 @@
+{
+  "generated_at_utc": "2026-10-07T19:37:40.547131+00:00",
+  "rules_version": "media-mvp-v0.1",
+  "datasets": {
+    "noticias": {
+      "rows_loaded": 1728,
+      "rows_ok": 50,
+      "rows_with_warnings": 1678,
+      "rows_with_errors": 0,
+      "rows_usable": 1728,
+      "rows_with_issues": 0,
+      "schema": {
+        "missing_columns": [],
+        "extra_columns": []
+      },
+      "duplicate_id_rows": 0,
+      "nulls_by_column": {
+        "id_noticia": 0,
+        "titulo": 0,
+        "url": 0,
+        "medio": 0,
+        "idioma": 0,
+        "fecha_publicacion": 1678,
+        "fecha_deteccion": 0,
+        "fecha_extraccion": 0,
+        "tema": 0,
+        "origen": 0,
+        "alcance_texto": 0
+      },
+      "errors_by_code": {},
+      "warnings_by_code": {
+        "missing_publication_date:fecha_publicacion": 1678
+      },
+      "by_origin": {
+        "1057thehawk.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "14ymedio.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "15min.lt": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "163.com": {
+          "rows": 17,
+          "ok": 0,
+          "warning": 17,
+          "error": 0
+        },
+        "20min.ch": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "24heures.ch": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "24sata.hr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "26sep.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "61saat.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "TVN RSS": {
+          "rows": 50,
+          "ok": 50,
+          "warning": 0,
+          "error": 0
+        },
+        "aa.com.tr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "aaj.tv": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "abc.com.py": {
+          "rows": 5,
+          "ok": 0,
+          "warning": 5,
+          "error": 0
+        },
+        "abc.es": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "abc.net.au": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "abc17news.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "abcbourse.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "abcnews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "aboluowang.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "acento.com.do": {
+          "rows": 8,
+          "ok": 0,
+          "warning": 8,
+          "error": 0
+        },
+        "actualno.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "adevarul.ro": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "advocate-news.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "afar.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "afghanistannews.net": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "afghanistansun.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "africaleader.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "aif.ru": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "aimdigital.com.ar": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "aiwaegypt.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "albawaba.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "almasryalyoum.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "almomento.mx": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "almomento.net": {
+          "rows": 4,
+          "ok": 0,
+          "warning": 4,
+          "error": 0
+        },
+        "alternatives-economiques.fr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "alternet.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "altoonamirror.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "alwasat.ly": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "am.com.mx": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "ambito.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "americanthinker.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "andaluciainformacion.es": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "anna-news.info": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "antena3.ro": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "aol.co.uk": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "aol.com": {
+          "rows": 5,
+          "ok": 0,
+          "warning": 5,
+          "error": 0
+        },
+        "aplateia.com.br": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "arabherald.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "arabi21.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "arabic.euronews.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "arabstoday.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "argentinastar.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "argumenti.ru": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "arroyodiario.com.ar": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "asamblea.gob.pa": {
+          "rows": 4,
+          "ok": 0,
+          "warning": 4,
+          "error": 0
+        },
+        "asiabulletin.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "asiaone.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "aspentimes.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "austinglobe.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "australiannews.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "avn.info.ve": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "azerbaijannews.net": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "azzaman.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "baijiahao.baidu.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "baltimorestar.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "baltimoresun.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "bangkokbiznews.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "bangkokpost.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "bankingnews.gr": {
+          "rows": 4,
+          "ok": 0,
+          "warning": 4,
+          "error": 0
+        },
+        "batonrougepost.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "bawabatii.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "baystreet.ca": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "bazonline.ch": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "bbc.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "bbs.wenxuecity.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "bd-pratidin.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "bernerzeitung.ch": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "bernews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "bignewsnetwork.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "bild.de": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "billypenn.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "bitlysdowssl-aws.com": {
+          "rows": 5,
+          "ok": 0,
+          "warning": 5,
+          "error": 0
+        },
+        "biz.heraldcorp.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "bjnews.com.cn": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "bjreview.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "bjreview.com.cn": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "blackseanews.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "blic.rs": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "blog.wenxuecity.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "bloomberght.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "bnnbloomberg.ca": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "bohemian.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "bostonherald.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "bostonmagazine.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "botasot.info": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "boursorama.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "boutiquevpc.courrierinternational.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "bozemandailychronicle.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "bradanovic.blogspot.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "bramptonguardian.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "brandonsun.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "bransontrilakesnews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "brasil247.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "brasildefato.com.br": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "bravenewcoin.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "brazilsun.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "breitbart.com": {
+          "rows": 5,
+          "ok": 0,
+          "warning": 5,
+          "error": 0
+        },
+        "brisbanetimes.com.au": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "britainnews.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "bruneinews.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "bryantimes.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "bssnews.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "buenosairesherald.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "businesstimes.com.sg": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "businesstoday.in": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "cadena3.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "caifuhao.eastmoney.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "canal26.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "cananewsonline.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "canarias7.es": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "cancilleria.gov.co": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "capital.fr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "capital.gr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "caribbeanherald.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "caribjournal.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "cbc.bb": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "cbc.ca": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "cbg.cn": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "cbgc.scol.com.cn": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "cbs12.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "ceskobudejovicky.denik.cz": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "cfr.org": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "chathamdailynews.ca": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "chicagotribune.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "chicoer.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "chimbotenlinea.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "china.com.cn": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "china.nmgnews.com.cn": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "chinadigitaltimes.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "chinanationalnews.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "chinapress.com.my": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "chinatimes.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "chinesepress.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "cincinnatisun.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "cincodias.elpais.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "citizensvoice.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "citywatchla.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "ciudadccs.info": {
+          "rows": 4,
+          "ok": 0,
+          "warning": 4,
+          "error": 0
+        },
+        "clarin.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "clevelandstar.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "clickondetroit.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "clickorlando.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "cna.com.tw": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "cnn.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "cnnespanol.cnn.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "cnnindonesia.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "colombia.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "community.scoop.co.nz": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "condor.cl": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "confirmado.com.ve": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "confirmado.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "consortiumnews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "contextotucuman.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "correiobraziliense.com.br": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "correiodoestado.com.br": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "correodelcaroni.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "coulisses-tv.fr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "countercurrents.org": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "counterpunch.org": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "courant.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "courrierinternational.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "cqnews.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "critica.com.mx": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "critica.com.pa": {
+          "rows": 15,
+          "ok": 0,
+          "warning": 15,
+          "error": 0
+        },
+        "cronista.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "cruiseindustrynews.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "cubadebate.cu": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "cubaheadlines.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "cubanet.org": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "curacaochronicle.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "cursdeguvernare.ro": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "dailybreeze.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "dailybulletin.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "dailygazette.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "dailykos.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "dailylocal.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "dailymail.co.uk": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "dailymail.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "dailymaverick.co.za": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "dailynews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "dailypioneer.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "dailypress.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "dailyrecord.co.uk": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "dailysignal.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "dailytrust.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "danas.rs": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "dawnnews.tv": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "decode.thaipbs.or.th": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "delo.ua": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "denikreferendum.cz": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "denizhaber.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "deperu.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "descifrado.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "df.cl": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "diaadia.com.pa": {
+          "rows": 4,
+          "ok": 0,
+          "warning": 4,
+          "error": 0
+        },
+        "diario1.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "diariocolatino.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "diariocordoba.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "diariocorreo.com.ec": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "diariodeavila.es": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "diariodigitalrd.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "diarioeldia.cl": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "diariolaopinion.com.ar": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "diariolibre.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "diariolongino.cl": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "diariopalentino.es": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "diariosigloxxi.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "diariosur.es": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "diariouno.com.ar": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "diena.lt": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "digi.china.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "digitaljournal.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "diyarbakirsoz.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "dmnews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "dnes.dir.bg": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "dnoticias.pt": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "dogruhaber.com.tr": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "dominicanrepublicpost.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "dominicantoday.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "dostor.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "dunya.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "dw.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "dwtonline.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "echoroukonline.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "economiadigital.es": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "economictimes.indiatimes.com": {
+          "rows": 4,
+          "ok": 0,
+          "warning": 4,
+          "error": 0
+        },
+        "ecoportal.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "edition.cnn.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "edp24.co.uk": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "eeo.com.cn": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "efe.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "egyptwindow.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "eju.tv": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "ekonomi.haber7.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "ekriti.gr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "el-balad.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "el-carabobeno.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "elaph.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "elboletin.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "elcaribe.com.do": {
+          "rows": 8,
+          "ok": 0,
+          "warning": 8,
+          "error": 0
+        },
+        "elciudadano.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "elcomercio.es": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "elconfidencial.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "eldestapeweb.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "eldia.com.do": {
+          "rows": 4,
+          "ok": 0,
+          "warning": 4,
+          "error": 0
+        },
+        "eldia.es": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "eldiadevalladolid.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "eldiario.ec": {
+          "rows": 5,
+          "ok": 0,
+          "warning": 5,
+          "error": 0
+        },
+        "eldiario.es": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "eldiariodechihuahua.mx": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "eldiariodesonora.com.mx": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "eldiariomontanes.es": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "eldiariony.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "eleconomista.com.mx": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "elesquiu.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "elfinanciero.com.mx": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "elfinancierocr.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "elimparcial.es": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "elimpulso.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "ellitoral.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "ellitoral.com.ar": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "elmostrador.cl": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "elmundo.es": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "elnacional.com.do": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "elobservador.com.uy": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "elovallino.cl": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "elpais.com": {
+          "rows": 7,
+          "ok": 0,
+          "warning": 7,
+          "error": 0
+        },
+        "elpais.com.co": {
+          "rows": 6,
+          "ok": 0,
+          "warning": 6,
+          "error": 0
+        },
+        "elpais.com.uy": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "elperiodico.cat": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "elperiodico.com": {
+          "rows": 4,
+          "ok": 0,
+          "warning": 4,
+          "error": 0
+        },
+        "elperiodicoextremadura.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "elpilon.com.co": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "elpinguino.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "elplural.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "elpuntavui.cat": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "elrancaguino.cl": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "elsalvador.com": {
+          "rows": 5,
+          "ok": 0,
+          "warning": 5,
+          "error": 0
+        },
+        "elsoldesantiago.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "eltiempo.com": {
+          "rows": 11,
+          "ok": 0,
+          "warning": 11,
+          "error": 0
+        },
+        "eluniversal.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "eluniverso.com": {
+          "rows": 4,
+          "ok": 0,
+          "warning": 4,
+          "error": 0
+        },
+        "elviajero.com.do": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "elwatannews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "em.com.br": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "emaratalyoum.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "emisorasunidas.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "emol.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "enanyang.my": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "enikos.gr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "entornointeligente.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "epochtimes.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "escolakids.uol.com.br": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "estadao.com.br": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "etnews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "ettoday.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "eurasiareview.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "europapress.es": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "europesun.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "evrensel.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "evropaelire.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "evz.ro": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "examiner.com.au": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "excelsior.com.mx": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "expansion.mx": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "expreso.ec": {
+          "rows": 4,
+          "ok": 0,
+          "warning": 4,
+          "error": 0
+        },
+        "express-novosti.ru": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "express.co.uk": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "extra.ec": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "fairfieldsuntimes.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "fairobserver.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "finance.eastmoney.com": {
+          "rows": 4,
+          "ok": 0,
+          "warning": 4,
+          "error": 0
+        },
+        "finance.now.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "finance.people.com.cn": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "finance.sina.com.cn": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "finance.yahoo.com": {
+          "rows": 5,
+          "ok": 0,
+          "warning": 5,
+          "error": 0
+        },
+        "financialsense.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "finanznachrichten.de": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "fjnews.fjsen.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "fjsen.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "fnnews.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "focus.scol.com.cn": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "focus.ua": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "focustaiwan.tw": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "fokus.se": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "folha.uol.com.br": {
+          "rows": 4,
+          "ok": 0,
+          "warning": 4,
+          "error": 0
+        },
+        "fondsk.ru": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "fool.ca": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "fool.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "forbes.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "foreignpolicy.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "fortmorgantimes.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "fortune.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "foxbangor.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "foxnews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "freemalaysiatoday.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "freerepublic.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "freshplaza.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "frifagbevegelse.no": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "frognews.bg": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "ftchinese.com": {
+          "rows": 4,
+          "ok": 0,
+          "warning": 4,
+          "error": 0
+        },
+        "futebolinterior.com.br": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "g1.globo.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "galvnews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "gardenandgun.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "gazetademaramures.ro": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "gazetaexpress.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "gazetaolsztynska.pl": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "gcaptain.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "gda.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "gestion.pe": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "ghanaiantimes.com.gh": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "ghanamma.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "globalissues.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "globalsecurity.org": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "globes.co.il": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "globovision.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "greaterbelize.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "greekherald.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "gtreview.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "gujaratsamachar.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "gulfnews.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "haberler.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "habervitrini.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "haitisun.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "haksozhaber.net": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "hani.co.kr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "haqqin.az": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "hashtag.al": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "havanatimes.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "hellenicshippingnews.com": {
+          "rows": 4,
+          "ok": 0,
+          "warning": 4,
+          "error": 0
+        },
+        "henricocitizen.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "herald-dispatch.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "hindi.moneycontrol.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "hindustantimes.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "hinews.cn": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "hirado.hu": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "hispanidad.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "hispantv.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "hkcd.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "hkwb.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "home.nzcity.co.nz": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "homenewshere.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "hongkongherald.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "horacero.com.mx": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "hot96.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "hotair.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "hotnews.ro": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "hoy.com.do": {
+          "rows": 7,
+          "ok": 0,
+          "warning": 7,
+          "error": 0
+        },
+        "hoydiariodelmagdalena.com.co": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "hoytamaulipas.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "huelvainformacion.es": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "huffingtonpost.fr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "hurriyet.com.tr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "hurriyetdailynews.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "huxiu.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "ibtimes.co.uk": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "ibtimes.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "icsf.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "idahopress.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "idrw.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "independent.co.uk": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "independent.ie": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "indiagazette.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "indianexpress.com": {
+          "rows": 4,
+          "ok": 0,
+          "warning": 4,
+          "error": 0
+        },
+        "inews.hket.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "infobae.com": {
+          "rows": 16,
+          "ok": 0,
+          "warning": 16,
+          "error": 0
+        },
+        "infomoney.com.br": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "insideclimatenews.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "insideindianabusiness.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "intelligencer.ca": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "interest.co.nz": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "internacionales.nexos.com.mx": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "inversorlatam.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "investegate.co.uk": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "iprofesional.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "ipsnews.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "iranherald.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "irishdentist.ie": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "irishsun.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "isp.netscape.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "israelherald.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "itemlive.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "iz.ru": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "jagranjosh.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "jamaica-gleaner.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "jamaicantimes.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "japanherald.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "jcmagazine.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "jiji.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "jornada.com.mx": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "jornaldebrasilia.com.br": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "jornaleconomico.sapo.pt": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "jowhar.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "jp.reuters.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "jpost.com": {
+          "rows": 5,
+          "ok": 0,
+          "warning": 5,
+          "error": 0
+        },
+        "juarezhoy.com.mx": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "justiceinfo.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "kabar24.bisnis.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "kaieteurnewsonline.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "kamatica.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "kaosenlared.net": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "kassioun.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "kauno.diena.lt": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "kenyastar.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "kezi.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "kfiam640.iheart.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "kioscomayor.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "kiplinger.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "klaipeda.diena.lt": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "km.ru": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "kmib.co.kr": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "koreaherald.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "koreatimes.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "korrespondent.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "krdo.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "ktar.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "ktvz.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "kurier.at": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "kyivpost.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "kyssfm.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "lacapital.com.ar": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "lacronicabadajoz.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "lactualite.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "lacuarta.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "laestrella.com.pa": {
+          "rows": 31,
+          "ok": 0,
+          "warning": 31,
+          "error": 0
+        },
+        "lafm.com.co": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "lahaine.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "lahora.gt": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "lajmi.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "lalibre.be": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "lanacion.com.ar": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "lanacion.com.py": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "lance.com.br": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "lanueva.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "laopinion.co": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "laopinion.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "laosnews.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "laprensaaustral.cl": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "lapresse.tn": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "larazon.es": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "laregion.es": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "larepublica.co": {
+          "rows": 5,
+          "ok": 0,
+          "warning": 5,
+          "error": 0
+        },
+        "larepublica.ec": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "larepublica.pe": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "las2orillas.co": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "lasvegassun.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "latercera.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "latimes.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "latina-press.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "latinamericanpost.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "latinpost.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "latribunadealbacete.es": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "latribunadetoledo.es": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "launion.com.ar": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "lavanguardia.com": {
+          "rows": 4,
+          "ok": 0,
+          "warning": 4,
+          "error": 0
+        },
+        "laverdad.com.mx": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "lavozdegalicia.es": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "lavozdemichoacan.com.mx": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "lb.ua": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "legrandsoir.info": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "lewrockwell.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "libnanews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "liderendeportes.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "lidovky.cz": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "life.ru": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "liputan6.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "listindiario.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "livehindustan.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "livemint.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "lmtribune.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "lne.es": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "localnews8.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "londonmercury.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "lopezdoriga.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "lostiempos.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "lrt.lt": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "m.kauno.diena.lt": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "m.tech.china.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "macombdaily.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "magic983.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "mainlinemedianews.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "malagaes.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "malatyaguncel.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "malaysiasun.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "malijet.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "manar.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "manilatimes.net": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "mankatofreepress.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "marinelink.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "marinij.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "maritime-executive.com": {
+          "rows": 5,
+          "ok": 0,
+          "warning": 5,
+          "error": 0
+        },
+        "maritimeprofessional.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "markets.financialcontent.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "marketscreener.com": {
+          "rows": 4,
+          "ok": 0,
+          "warning": 4,
+          "error": 0
+        },
+        "massachusettssun.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "mcall.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "mdzol.com": {
+          "rows": 5,
+          "ok": 0,
+          "warning": 5,
+          "error": 0
+        },
+        "meetingstoday.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "meganoticias.mx": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "memphissun.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "memurlar.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "mendocinobeacon.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "menorca.info": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "mercadoeeventos.com.br": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "mesabitribune.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "mexicostar.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "mfor.hu": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "middleeaststar.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "midiario.com": {
+          "rows": 10,
+          "ok": 0,
+          "warning": 10,
+          "error": 0
+        },
+        "mil.news.sina.com.cn": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "milenio.com": {
+          "rows": 5,
+          "ok": 0,
+          "warning": 5,
+          "error": 0
+        },
+        "military.china.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "milwaukeesun.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "mining.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "miragenews.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "mire.gob.pa": {
+          "rows": 5,
+          "ok": 0,
+          "warning": 5,
+          "error": 0
+        },
+        "mirror.co.uk": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "mk.ru": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "money.pl": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "moneycontrol.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "monitorulsv.ro": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "motor1.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "mundiario.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "mundodehoy.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "mundomaritimo.cl": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "mykxlg.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "myleaderpaper.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "mymotherlode.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "mynews13.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "mynewsla.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "mynorthwest.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "n-tv.de": {
+          "rows": 12,
+          "ok": 0,
+          "warning": 12,
+          "error": 0
+        },
+        "nacion.com": {
+          "rows": 8,
+          "ok": 0,
+          "warning": 8,
+          "error": 0
+        },
+        "nacla.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "nakedcapitalism.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "nashfm923krst.com": {
+          "rows": 6,
+          "ok": 0,
+          "warning": 6,
+          "error": 0
+        },
+        "navbharattimes.indiatimes.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "nbcmiami.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "nbd.com.cn": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "nearshoreamericas.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "negocios.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "news.cn": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "news.cyol.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "news.dayoo.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "news.fznews.com.cn": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "news.ifeng.com": {
+          "rows": 4,
+          "ok": 0,
+          "warning": 4,
+          "error": 0
+        },
+        "news.iqilu.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "news.jxnews.com.cn": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "news.k618.cn": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "news.mail.ru": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "news.shm.com.cn": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "news.xmnn.cn": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "news.xxrb.com.cn": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "news.ycwb.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "news4jax.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "news8000.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "newsbomb.gr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "newsday.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "newsghana.com.gh": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "newsinamerica.com": {
+          "rows": 8,
+          "ok": 0,
+          "warning": 8,
+          "error": 0
+        },
+        "newspim.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "newsregister.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "newsroomamerica.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "newsroompanama.com": {
+          "rows": 13,
+          "ok": 0,
+          "warning": 13,
+          "error": 0
+        },
+        "newsweekjapan.jp": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "newyorkstatesman.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "newyorktelegraph.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "newzealandstar.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "ng.ru": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "nhgazette.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "nigerianobservernews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "nigeriasun.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "northernminer.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "northkoreatimes.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "northwestsignal.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "noticiabrasil.net.br": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "noticias.r7.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "noticiasrcn.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "noticierodigital.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "notimerica.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "nova.ie": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "novilist.hr": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "novinite.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "nspm.rs": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "ntdtv.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "ntn24.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "nuevaya.com.ni": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "nuevodia.com.ve": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "nvinoticias.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "nwaonline.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "nydailynews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "nytimes.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "nzherald.co.nz": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "observertoday.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "ocregister.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "oeeee.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "oglobo.globo.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "ohiostandard.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "oilreview.kiev.ua": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "oklahomastar.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "ole.com.ar": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "omanobserver.om": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "onvista.de": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "opinionnigeria.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "orientaldaily.com.my": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "orissapost.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "pachamamaradio.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "pakistantelegraph.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "pakistantoday.com.pk": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "panamaamerica.com.pa": {
+          "rows": 33,
+          "ok": 0,
+          "warning": 33,
+          "error": 0
+        },
+        "panampost.com": {
+          "rows": 4,
+          "ok": 0,
+          "warning": 4,
+          "error": 0
+        },
+        "parisguardian.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "pasadenastarnews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "pb.pl": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "pbs.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "pennlive.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "peoplesworld.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "perfil.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "periodicolaperla.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "periodistadigital.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "philippinetimes.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "philstar.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "piensachile.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "pilotonline.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "pinstripealley.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "pittsburghstar.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "pjmedia.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "planoinformativo.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "playboy.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "plazadearmas.com.mx": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "pleinevie.fr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "portafolio.co": {
+          "rows": 5,
+          "ok": 0,
+          "warning": 5,
+          "error": 0
+        },
+        "poslovni.hr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "prabhanews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "prensa-latina.cu": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "prensa.com": {
+          "rows": 70,
+          "ok": 0,
+          "warning": 70,
+          "error": 0
+        },
+        "prensalibre.com": {
+          "rows": 5,
+          "ok": 0,
+          "warning": 5,
+          "error": 0
+        },
+        "pressdemocrat.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "presseportal.de": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "presstelegram.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "prestigeonline.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "privatbankar.hu": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "prnewswire.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "proceso.com.do": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "proceso.hn": {
+          "rows": 6,
+          "ok": 0,
+          "warning": 6,
+          "error": 0
+        },
+        "profile.ru": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "prokerala.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "pronedra.ru": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "prospect.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "prvnizpravy.cz": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "qns.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "qzwb.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "racismoambiental.net.br": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "radiofrance.fr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "radiosantafe.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "radiosvoboda.org": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "rador.ro": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "rappler.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "record-bee.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "redlandsdailyfacts.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "redstate.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "reporter.gr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "reportur.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "republica.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "republicanherald.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "revistaeyn.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "revistaforum.com.br": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "revistaopera.operamundi.uol.com.br": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "revistapuntodevista.com.mx": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "revistasumma.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "ria.ru": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "rionegro.com.ar": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "riotimesonline.com": {
+          "rows": 12,
+          "ok": 0,
+          "warning": 12,
+          "error": 0
+        },
+        "royalgazette.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "rp.pl": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "rpctv.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "rpp.pe": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "rte.ie": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "rtp.pt": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "rtvslo.si": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "runrun.es": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "russiaherald.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "sabah.com.tr": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "sacurrent.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "sailingscuttlebutt.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "salon.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "salta.gob.ar": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "sana.sy": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "sanantoniopost.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "sandiegomagazine.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "sandiegosun.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "sandiegouniontribune.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "santacruzsentinel.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "sapo.pt": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "sarayanews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "sb.by": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "sbs.com.au": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "sbsun.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "scmp.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "scoop.co.nz": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "searchlight.vc": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "seattletimes.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "segye.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "semana.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "servindi.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "setn.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "sgvtribune.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "shanghainews.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "shippingtribune.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "shockya.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "shorelinemedia.net": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "shorouknews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "sierraleonetimes.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "signalscv.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "sinembargo.mx": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "singtaousa.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "sipse.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "sitkasentinel.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "slate.fr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "slguardian.org": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "smh.com.au": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "socialistalternative.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "socialistproject.ca": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "sofrep.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "southcn.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "sozcu.com.tr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "spacewar.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "spanish.peopledaily.com.cn": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "spectator.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "stabroeknews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "stakeholders.com.pe": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "standardspeaker.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "starnieuws.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "stcatharinesstandard.ca": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "stcn.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "stdaily.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "stirileprotv.ro": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "stock.jrj.com.cn": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "storm.mg": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "straitstimes.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "sudouest.fr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "sueddeutsche.de": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "sun-sentinel.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "suncommercial.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "surysur.net": {
+          "rows": 4,
+          "ok": 0,
+          "warning": 4,
+          "error": 0
+        },
+        "sznews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "t21.com.mx": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "tagesanzeiger.ch": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "taipeitimes.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "taiwansun.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "talcualdigital.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "taxydromos.gr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "tctelevision.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "teleamazonas.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "telecomtv.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "telemetro.com": {
+          "rows": 15,
+          "ok": 0,
+          "warning": 15,
+          "error": 0
+        },
+        "telesurtv.net": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "tercerainformacion.es": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "termometroenlinea.com.mx": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "texasguardian.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "tf1info.fr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "thailandnews.net": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "the-messenger.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "theage.com.au": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "theamericanconservative.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "thedailybeast.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "thedailyworld.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "thedialog.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "theepochtimes.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "theglobeandmail.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "theguardian.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "thehindubusinessline.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "thelocal.es": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "themarketsdaily.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "themarysue.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "thenation.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "thenational.scot": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "thenationalnews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "thepeterboroughexaminer.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "therecord.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "thespiritsbusiness.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "thestar.com.my": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "thetimes-tribune.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "thetimes.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "theweathernetwork.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "thewhig.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "time.mk": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "timescall.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "timesofindia.indiatimes.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "timesofsandiego.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "tk.no": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "tn.com.ar": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "torontotelegraph.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "tr.euronews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "tradearabia.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "travel.yahoo.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "travelmole.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "tribuna.com.mx": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "tribunaonline.com.br": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "tribune.com.pk": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "tribuneindia.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "trinidadexpress.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "troyrecord.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "tucsonpost.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "tv2.no": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "tvn.cl": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "tvn24.pl": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "tvxs.gr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "tynmagazine.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "udn.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "ukiahdailyjournal.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "ultimasnoticias.com.ve": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "understandingwar.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "unn.ua": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "upi.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "urgente24.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "us.cnn.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "utahindependent.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "uzmanpara.milliyet.com.tr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "vanguardia.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "vava8.com": {
+          "rows": 4,
+          "ok": 0,
+          "warning": 4,
+          "error": 0
+        },
+        "ve.lt": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "vedomosti.ru": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "venezuelanalysis.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "ventasbalss.lv": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "vermelho.org.br": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "vesti.az": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "vestikavkaza.ru": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "vg.hu": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "vg.no": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "vietnamnews.vn": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "vm.ru": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "voltairenet.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "voria.gr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "waff.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "wallstreetcn.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "warontherocks.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "wartakota.tribunnews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "washingtoninstitute.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "washingtonspectator.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "watoday.com.au": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "wboc.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "wdhafm.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "weekend.perfil.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "welt.de": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "wenxuecity.com": {
+          "rows": 5,
+          "ok": 0,
+          "warning": 5,
+          "error": 0
+        },
+        "westhawaiitoday.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "wfmd.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "wgauradio.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "wgcu.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "whbl.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "whdh.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "whittierdailynews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "whmi.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "whtc.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "wiadomosci.gazeta.pl": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "winknews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "winnipegfreepress.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "wirtualnemedia.pl": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "wjhg.com": {
+          "rows": 13,
+          "ok": 0,
+          "warning": 13,
+          "error": 0
+        },
+        "wlrn.org": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "wnp.pl": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "wobm.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "wokv.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "world.qianlong.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "worldfoodprize.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "wrganews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "wrp.org.uk": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "wsau.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "wsbradio.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "wsls.com": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "wtvy.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "wuft.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "wuwf.org": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "wwd.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "wyomingnewsnow.tv": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "xataka.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "xornalgalicia.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "xuexi.voc.com.cn": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "yabloko.ru": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "yahoo.com": {
+          "rows": 6,
+          "ok": 0,
+          "warning": 6,
+          "error": 0
+        },
+        "yakimaherald.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "yeniakit.com.tr": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "ynet.co.il": {
+          "rows": 2,
+          "ok": 0,
+          "warning": 2,
+          "error": 0
+        },
+        "ynetnews.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "yourdemocracy.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "yourdemocracy.net.au": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "yoursourceone.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "yukon-news.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "zaobao.com.sg": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        },
+        "zaxid.net": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "zerohedge.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "ziare.com": {
+          "rows": 4,
+          "ok": 0,
+          "warning": 4,
+          "error": 0
+        },
+        "ziuaconstanta.ro": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "zmescience.com": {
+          "rows": 1,
+          "ok": 0,
+          "warning": 1,
+          "error": 0
+        },
+        "zonebourse.com": {
+          "rows": 3,
+          "ok": 0,
+          "warning": 3,
+          "error": 0
+        }
+      },
+      "note": "Las filas con warning siguen siendo utilizables. La ausencia de fecha_publicacion en fuentes como GDELT se conserva y no se reemplaza por fecha_deteccion. Las filas con error requieren revisión."
+    },
+    "indicadores": {
+      "rows_loaded": 540,
+      "rows_ok": 540,
+      "rows_with_warnings": 0,
+      "rows_with_errors": 0,
+      "rows_usable": 540,
+      "rows_with_issues": 0,
+      "schema": {
+        "missing_columns": [],
+        "extra_columns": []
+      },
+      "duplicate_key_rows": 0,
+      "nulls_by_column": {
+        "pais_iso3": 0,
+        "indicador_id": 0,
+        "anio": 0,
+        "valor": 0,
+        "unidad": 0,
+        "fuente_url": 0,
+        "fecha_extraccion": 0,
+        "licencia": 0
+      },
+      "errors_by_code": {},
+      "warnings_by_code": {},
+      "nullable_by_contract": [
+        "valor"
+      ],
+      "note": "`valor` puede ser nulo por contrato. Las filas se conservan y no se rellenan con cero."
+    }
+  },
+  "outputs": {
+    "noticias_validated": "data\\processed\\noticias_validated.csv",
+    "indicadores_validated": "data\\processed\\indicadores_validated.csv"
+  }
+}

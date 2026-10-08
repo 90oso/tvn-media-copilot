@@ -1,0 +1,33 @@
+{
+  "selected": "semantic",
+  "criterion": "mayor F1 par-a-par contra cluster_humano",
+  "labeled_items": 120,
+  "baseline": {
+    "n_items": 120,
+    "n_pairs": 7140,
+    "tp": 17,
+    "fp": 1,
+    "fn": 2,
+    "tn": 7120,
+    "precision": 0.9444,
+    "recall": 0.8947,
+    "f1": 0.9189
+  },
+  "semantic": {
+    "n_items": 120,
+    "n_pairs": 7140,
+    "tp": 17,
+    "fp": 0,
+    "fn": 2,
+    "tn": 7121,
+    "precision": 1.0,
+    "recall": 0.8947,
+    "f1": 0.9444
+  },
+  "delta_semantic_vs_baseline": {
+    "precision": 0.0556,
+    "recall": 0.0,
+    "f1": 0.0255
+  },
+  "note": "La selección aplica al MVP y a esta muestra humana. No implica una afirmación universal sobre todo el corpus."
+}

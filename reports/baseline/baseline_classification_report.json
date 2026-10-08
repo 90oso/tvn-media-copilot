@@ -1,0 +1,42 @@
+{
+  "generated_at_utc": "2026-10-07T20:08:14.432430+00:00",
+  "baseline_version": "keyword-rules-v0.1",
+  "purpose": "Baseline simple para comparación posterior con una capacidad NLP/ML. No constituye por sí solo el uso sustantivo de IA.",
+  "input": "data\\processed\\noticias_validated.csv",
+  "output": "data\\processed\\noticias_classified_baseline.csv",
+  "official_topics": [
+    "economía",
+    "logística/Canal",
+    "turismo",
+    "servicios públicos",
+    "eventos naturales",
+    "regulación"
+  ],
+  "rows": 1728,
+  "prediction_counts": {
+    "sin_clasificar": 1487,
+    "logística/Canal": 100,
+    "economía": 68,
+    "turismo": 52,
+    "eventos naturales": 8,
+    "regulación": 7,
+    "servicios públicos": 6
+  },
+  "status_counts": {
+    "sin_clasificar": 1474,
+    "clasificado": 241,
+    "empate": 13
+  },
+  "evaluation": {
+    "available": false,
+    "reason": "No hay etiquetas de referencia válidas. Las métricas deben calcularse sobre etiquetas humanas.",
+    "n_labeled": 0
+  },
+  "limitations": [
+    "Clasifica solo con el título disponible en el contrato actual.",
+    "No entiende contexto ni polisemia.",
+    "Puede abstenerse ante ausencia de palabras clave o empate.",
+    "Las palabras clave son una propuesta técnica del equipo, no un requisito del reto.",
+    "`sin_clasificar` es un estado técnico y no una séptima categoría."
+  ]
+}

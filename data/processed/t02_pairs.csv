@@ -1,0 +1,7 @@
+id_noticia_a,id_noticia_b,similarity_tfidf,date_compatible,topic_compatible,accepted_same_event
+T02-1,T02-2,0.739786,True,True,True
+T02-1,T02-3,0.765662,True,True,True
+T02-1,T02-4,0.090987,True,False,False
+T02-2,T02-3,0.636534,True,True,True
+T02-2,T02-4,0.080298,True,False,False
+T02-3,T02-4,0.014069,True,False,False
