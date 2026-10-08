@@ -1,3 +1,5 @@
+from typing import Literal
+
 from fastapi import APIRouter, Query
 
 from app.core.settings import get_settings
@@ -8,12 +10,12 @@ router = APIRouter(prefix="/agenda", tags=["agenda"])
 
 
 @router.get("")
-def agenda(limit: int = Query(5, ge=1, le=20)):
+def agenda(limit: int = Query(5, ge=1, le=20), language: Literal["es", "all"] = Query("all")):
     settings = get_settings()
     items = build_agenda(
         DuckDBRepository(settings.database_path),
         settings,
-        limit,
+        limit, language=language,
     )
     return {
         "count": len(items),
