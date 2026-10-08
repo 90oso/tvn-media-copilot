@@ -96,6 +96,55 @@ class DuckDBRepository:
                 return con.execute("SELECT * FROM noticias LIMIT ?", [limit]).fetchdf()
             return pd.read_sql_query("SELECT * FROM noticias LIMIT ?", con, params=(limit,))
 
+
+    def get_all_valid_news(self) -> pd.DataFrame:
+        """Carga las noticias utilizables en una sola consulta.
+
+        La agenda usa este método para evitar abrir la base una vez por cada
+        cluster. Con ~1,300 clusters, el patrón anterior provocaba cientos o
+        miles de conexiones/consultas por una sola petición HTTP.
+        """
+        with self.connect() as con:
+            if "noticias" not in self._tables(con):
+                return pd.DataFrame()
+
+            cols = self._columns(con, "noticias")
+            valid_clause = (
+                " WHERE _validation_status IN ('ok','warning')"
+                if "_validation_status" in cols
+                else ""
+            )
+            query = f"SELECT * FROM noticias{valid_clause}"
+
+            if duckdb is not None:
+                return con.execute(query).fetchdf()
+
+            return pd.read_sql_query(query, con)
+
+    def get_all_reviews(self) -> dict[str, dict]:
+        """Devuelve revisiones humanas indexadas por case_id en una sola consulta."""
+        with self.connect() as con:
+            self._ensure_reviews_table(con)
+            rows = con.execute(
+                """
+                SELECT case_id, action, state, reviewer, note, updated_at
+                FROM reviews
+                """
+            ).fetchall()
+
+        keys = [
+            "case_id",
+            "action",
+            "state",
+            "reviewer",
+            "note",
+            "updated_at",
+        ]
+        return {
+            str(row[0]): dict(zip(keys, row))
+            for row in rows
+        }
+
     def get_cluster_news(self, cluster_id: str) -> pd.DataFrame:
         with self.connect() as con:
             if "noticias" not in self._tables(con):
