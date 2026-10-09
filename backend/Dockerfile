@@ -3,7 +3,8 @@ WORKDIR /app
 COPY backend/requirements.txt ./requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 COPY backend/app ./app
-COPY backend/bootstrap_db.py ./bootstrap_db.py
+COPY backend/start_hosted.py ./start_hosted.py
 COPY data ./data
-ENV PYTHONUNBUFFERED=1 PYTHONPATH=/app
-CMD ["uvicorn","app.main:app","--host","0.0.0.0","--port","8000"]
+ENV PYTHONUNBUFFERED=1 PYTHONPATH=/app APP_ENV=production
+EXPOSE 10000
+CMD ["python", "start_hosted.py"]
