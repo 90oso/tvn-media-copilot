@@ -109,6 +109,31 @@ function formatIndicatorValue(value: string) {
 const WORKSPACE_STORAGE_KEY = "tvn-media-copilot:workspace:v1";
 const draftStorageKey = (caseId: string) => `tvn-media-copilot:drafts:v1:${caseId}`;
 const DRAFT_MODES: DraftMode[] = ["brief", "script", "digital"];
+// Las copias de consulta no contienen secretos ni sustituyen la base editorial.
+const radarSnapshotKey = (url: string) => `tvn-media-copilot:radar:v2:${url}`;
+const caseSnapshotKey = (caseId: string) => `tvn-media-copilot:case:v2:${caseId}`;
+const PENDING_REVIEWS_KEY = "tvn-media-copilot:review-outbox:v1";
+const EDITOR_KEY_SESSION = "tvn-media-copilot:editor-key:session";
+function editorialHeaders(): Record<string, string> {
+  try { const key = sessionStorage.getItem(EDITOR_KEY_SESSION); return key ? { "X-Editor-Key": key } : {}; }
+  catch { return {}; }
+}
+
+type ReviewAction = "approve" | "correct" | "discard";
+type PendingReview = { caseId: string; signature: string; action: ReviewAction; reviewer: string; note: string; queuedAt: string };
+function localRead<T>(key: string): T | null {
+  try { const raw = localStorage.getItem(key); return raw ? JSON.parse(raw) as T : null; }
+  catch { return null; }
+}
+function localWrite<T>(key: string, value: T): boolean {
+  try { localStorage.setItem(key, JSON.stringify(value)); return true; }
+  catch { return false; }
+}
+function readPendingReviews(): PendingReview[] {
+  const x = localRead<PendingReview[]>(PENDING_REVIEWS_KEY);
+  return Array.isArray(x) ? x.filter(v => v && v.caseId && v.signature && v.action) : [];
+}
+
 
 type StoredWorkspace = {
   selectedId: string;
@@ -233,6 +258,11 @@ export default function Home() {
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [workspaceReady, setWorkspaceReady] = useState(false);
   const [draftsRestored, setDraftsRestored] = useState(false);
+  const [isOnline, setIsOnline] = useState(true);
+  const [offlinePreparing, setOfflinePreparing] = useState(false);
+  const [queuedReviews, setQueuedReviews] = useState(0);
+  const [editorKey, setEditorKey] = useState("");
+
   const detailRequest = useRef(0);
   const searchRequest = useRef(0);
   const evidencePaneRef = useRef<HTMLElement>(null);
@@ -252,17 +282,39 @@ export default function Home() {
     setDraftsRestored(false);
     try {
       const loaded = await jsonResponse<CaseItem>(`${API}/topics/${encodeURIComponent(caseId)}/analysis`);
+      localWrite(caseSnapshotKey(caseId), loaded);
       if (request === detailRequest.current) {
         const saved = readSavedDrafts(caseId, loaded.evidence_package);
         setDetail(loaded);
         setDrafts(saved);
         setDraftsRestored(Object.keys(saved).length > 0);
+        // El servidor puede restaurar borradores en otros dispositivos sin solicitar Gemini.
+        void jsonResponse<{drafts: Partial<Record<DraftMode, Generated>>}>(`${API}/generate/${encodeURIComponent(caseId)}/saved`)
+          .then(result => {
+            if (request !== detailRequest.current) return;
+            const merged = {...saved, ...(result.drafts || {})};
+            if (Object.keys(merged).length) {
+              setDrafts(merged);
+              setDraftsRestored(true);
+              saveDrafts(caseId, loaded.evidence_package, merged);
+            }
+          }).catch(() => { /* siguen disponibles las copias del navegador */ });
         if (loaded.workflow.human_review?.reviewer) {
           setReviewer(loaded.workflow.human_review.reviewer);
         }
       }
     } catch (e) {
-      if (request === detailRequest.current) { setDetail(null); setError(errorMessage(e)); }
+      const cached = localRead<CaseItem>(caseSnapshotKey(caseId));
+      if (request === detailRequest.current && cached?.evidence_package) {
+        setDetail(cached);
+        const saved = readSavedDrafts(caseId, cached.evidence_package);
+        setDrafts(saved);
+        setDraftsRestored(Object.keys(saved).length > 0);
+        setApiStatus("Sin conexión · expediente guardado");
+        setNotice("Expediente consultado desde la copia de este navegador. Las fuentes no se han actualizado.");
+      } else if (request === detailRequest.current) {
+        setDetail(null); setError(`No se pudo cargar el expediente: ${errorMessage(e)}. Prepara su copia mientras haya conexión.`);
+      }
     } finally {
       if (request === detailRequest.current) setIsCaseLoading(false);
     }
@@ -280,10 +332,23 @@ export default function Home() {
     setRadarMode(explore ? "explore" : "top");
     setSearchDescription("");
     try {
-      const result = explore
-        ? await jsonResponse<SearchResult>(`${API}/explore?${new URLSearchParams({ q, topic: t, evidence: e, language: lang, limit: "30" })}`)
-        : await jsonResponse<SearchResult>(`${API}/agenda?${new URLSearchParams({limit: "5", language: lang})}`);
+      const url = explore
+        ? `${API}/explore?${new URLSearchParams({ q, topic: t, evidence: e, language: lang, limit: "30" })}`
+        : `${API}/agenda?${new URLSearchParams({limit: "5", language: lang})}`;
+      let result: SearchResult;
+      let fromSnapshot = false;
+      try {
+        result = await jsonResponse<SearchResult>(url);
+        localWrite(radarSnapshotKey(url), result);
+      } catch (onlineError) {
+        const saved = localRead<SearchResult>(radarSnapshotKey(url));
+        if (!saved?.items) throw onlineError;
+        result = saved;
+        fromSnapshot = true;
+        setApiStatus("Sin conexión · radar guardado");
+      }
       if (request !== searchRequest.current) return;
+      if (fromSnapshot) setNotice("Mostrando el radar guardado. No se están recibiendo noticias nuevas.");
       setAgenda(result.items || []);
       setResultTotal(result.total_matches ?? result.items?.length ?? 0);
       setSearchDescription(result.abstained ? (result.note || "No se encontraron resultados en el archivo.") : (explore ? (result.note || "Resultados obtenidos de los titulares y metadatos disponibles.") : "Cinco temas según las reglas de prioridad."));
@@ -295,6 +360,18 @@ export default function Home() {
       if (request === searchRequest.current) setIsLoading(false);
     }
   }, [selectCase]);
+
+  useEffect(() => {
+    const refresh = () => { setIsOnline(navigator.onLine); setQueuedReviews(readPendingReviews().length); };
+    refresh();
+    try { setEditorKey(sessionStorage.getItem(EDITOR_KEY_SESSION) || ""); } catch { /* sesión privada */ }
+    window.addEventListener("online", refresh);
+    window.addEventListener("offline", refresh);
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js").catch(() => { /* modo sin conexión limitado al archivo local */ });
+    }
+    return () => { window.removeEventListener("online", refresh); window.removeEventListener("offline", refresh); };
+  }, []);
 
   useEffect(() => {
     jsonResponse<{ status: string; version?: string }>(`${API}/health`)
@@ -352,6 +429,12 @@ export default function Home() {
   }
   async function generateDraft() {
     if (!detail?.workflow?.draft_enabled) return;
+    if (!navigator.onLine) {
+      setNotice(drafts[mode]
+        ? "Sin conexión: el borrador de este formato está disponible en su copia guardada."
+        : "No se puede generar con Gemini sin conexión. Recupera un borrador guardado o espera a volver a conectarte.");
+      return;
+    }
     setIsGenerating(true);
     setError("");
     setNotice("");
@@ -359,7 +442,7 @@ export default function Home() {
       const caseId = detail.case_id;
       const packageAtStart = detail.evidence_package;
       const request = detailRequest.current;
-      const r = await jsonResponse<Generated>(`${API}/generate/${encodeURIComponent(caseId)}?mode=${mode}`, { method: "POST" });
+      const r = await jsonResponse<Generated>(`${API}/generate/${encodeURIComponent(caseId)}?mode=${mode}`, { method: "POST", headers: editorialHeaders() });
       // Conserva el borrador incluso si se selecciona otra noticia mientras llega Gemini.
       const existing = readSavedDrafts(caseId, packageAtStart);
       const updated = { ...existing, ...drafts, [mode]: r };
@@ -377,21 +460,87 @@ export default function Home() {
     if (!detail || !reviewer.trim()) { setError("Identifica a la persona revisora antes de registrar la decisión."); return; }
     if (action === "approve" && !canApprove) { setError("Genera o recupera un borrador antes de aprobarlo; la evidencia debe ser suficiente."); return; }
     if (action === "correct" && !reviewNote.trim()) { setError("Indica qué debe corregirse."); return; }
+    if (!navigator.onLine) {
+      const pending = readPendingReviews();
+      pending.push({ caseId: detail.case_id, signature: evidenceSignature(detail.evidence_package),
+        action, reviewer: reviewer.trim(), note: reviewNote.trim(), queuedAt: new Date().toISOString() });
+      if (!localWrite(PENDING_REVIEWS_KEY, pending)) {
+        setError("No se pudo guardar la revisión pendiente en este navegador. Copia tu nota antes de salir.");
+        return;
+      }
+      setQueuedReviews(pending.length);
+      setNotice("Decisión guardada solamente en este dispositivo: PENDIENTE de sincronización. Aún NO está registrada en el servidor.");
+      return;
+    }
     setIsReviewing(true);
     setError("");
     try {
       const body = await jsonResponse<{ review: HumanReview }>(`${API}/reviews/${encodeURIComponent(detail.case_id)}`, {
-        method: "POST", headers: { "Content-Type": "application/json" },
+        method: "POST", headers: { "Content-Type": "application/json", ...editorialHeaders() },
         body: JSON.stringify({ action, reviewer: reviewer.trim(), note: reviewNote.trim() }),
       });
       setReviewNote("");
       setNotice(`Decisión registrada: ${body.review.state}. No se ha publicado ningún contenido.`);
       const loaded = await jsonResponse<CaseItem>(`${API}/topics/${encodeURIComponent(detail.case_id)}/analysis`);
       setDetail(loaded);
+      localWrite(caseSnapshotKey(detail.case_id), loaded);
       setAgenda(items => items.map(x => x.case_id === detail.case_id ? loaded : x));
     } catch (e) { setError(errorMessage(e)); }
     finally { setIsReviewing(false); }
   }
+  function updateEditorKey(value: string) {
+    setEditorKey(value);
+    try { if (value) sessionStorage.setItem(EDITOR_KEY_SESSION, value); else sessionStorage.removeItem(EDITOR_KEY_SESSION); }
+    catch { setNotice("Este navegador no permite conservar la clave de edición durante la sesión."); }
+  }
+
+  async function prepareOffline() {
+    if (!navigator.onLine) { setNotice("Conéctate a Internet para preparar una copia del radar."); return; }
+    setOfflinePreparing(true);
+    setError("");
+    let savedCount = 0;
+    // Descarga explícita de las fichas visibles; no equivale a descargar todo el corpus.
+    for (const item of agenda.slice(0, 30)) {
+      try {
+        const record = await jsonResponse<CaseItem>(`${API}/topics/${encodeURIComponent(item.case_id)}/analysis`);
+        if (localWrite(caseSnapshotKey(item.case_id), record)) savedCount++;
+      } catch { /* guardar expedientes disponibles y reportar cantidad real */ }
+    }
+    setOfflinePreparing(false);
+    setNotice(`Copia offline preparada para ${savedCount} de ${Math.min(agenda.length, 30)} expedientes visibles. El buscador offline usa las consultas realizadas anteriormente.`);
+  }
+
+  async function synchronizeReviews() {
+    if (!navigator.onLine) { setNotice("La sincronización requiere conexión a Internet."); return; }
+    const pending = readPendingReviews();
+    if (!pending.length) { setNotice("No hay decisiones pendientes de sincronización."); return; }
+    let sent = 0;
+    const remainder: PendingReview[] = [];
+    let conflict = 0;
+    for (const entry of pending) {
+      try {
+        const currentRemote = await jsonResponse<CaseItem>(`${API}/topics/${encodeURIComponent(entry.caseId)}/analysis`);
+        if (evidenceSignature(currentRemote.evidence_package) !== entry.signature) {
+          // Nunca enviar una aprobación offline si la evidencia cambió.
+          conflict++;
+          remainder.push(entry);
+          continue;
+        }
+        await jsonResponse(`${API}/reviews/${encodeURIComponent(entry.caseId)}`, {
+          method: "POST", headers: { "Content-Type": "application/json", ...editorialHeaders() },
+          body: JSON.stringify({ action: entry.action, reviewer: entry.reviewer, note: entry.note }),
+        });
+        sent++;
+        const newRemote = await jsonResponse<CaseItem>(`${API}/topics/${encodeURIComponent(entry.caseId)}/analysis`);
+        localWrite(caseSnapshotKey(entry.caseId), newRemote);
+        if (selectedId === entry.caseId) setDetail(newRemote);
+      } catch { remainder.push(entry); }
+    }
+    localWrite(PENDING_REVIEWS_KEY, remainder);
+    setQueuedReviews(remainder.length);
+    setNotice(`${sent} decisión(es) registradas en el servidor. ${remainder.length} pendiente(s).${conflict ? ` ${conflict} requieren revisión: cambió la evidencia.` : ""}`);
+  }
+
   async function copyText(value: string) {
     try { await navigator.clipboard.writeText(value); setNotice("Referencia copiada al portapapeles."); }
     catch { setNotice("No se pudo copiar automáticamente. Selecciona el texto para copiarlo."); }
@@ -415,6 +564,14 @@ export default function Home() {
           <div className="edition-stamp"><span>ARCHIVO DE TRABAJO</span><strong>Panamá</strong><small>Datos públicos · Sin publicación automática</small></div>
         </div>
 
+        <div className="offline-toolbar" role="status">
+          <span>{!isOnline || apiStatus.startsWith("Sin conexión") || apiStatus === "Servicio no disponible" ? "● Consulta offline: datos guardados, no actualizados" : "● Conexión disponible"}</span>
+          <div className="offline-toolbar-actions">
+            <label className="editor-key-control">Clave editorial (opcional)<input type="password" autoComplete="off" value={editorKey} onChange={e => updateEditorKey(e.target.value)} placeholder="Solo si Render la requiere" aria-label="Clave privada de edición" /></label>
+            <button type="button" disabled={offlinePreparing || !agenda.length || !isOnline} onClick={() => void prepareOffline()}>{offlinePreparing ? "Preparando copia…" : "Guardar expedientes visibles para uso offline"}</button>
+            <button type="button" disabled={!queuedReviews || !isOnline} onClick={() => void synchronizeReviews()}>Sincronizar revisiones ({queuedReviews})</button>
+          </div>
+        </div>
         {(error || notice) && <div className={`feedback ${error ? "feedback-error" : "feedback-success"}`} role={error ? "alert" : "status"}><Icon name={error ? "alert" : "check"}/><span>{error || notice}</span><button aria-label="Cerrar aviso" onClick={() => { setError(""); setNotice(""); }}>×</button></div>}
 
         <div className="workstation">

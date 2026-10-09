@@ -465,3 +465,12 @@
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+/* Copia y sincronización: una franja de estado sin invadir los tres paneles. */
+.offline-toolbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:10px 18px;border:1px solid var(--line, #cdd8e5);border-radius:10px;background:var(--panel, #f4f8fd);margin:8px 0 16px;font-size:13px}
+.offline-toolbar-actions{display:flex;gap:8px;flex-wrap:wrap}
+.offline-toolbar button{padding:8px 12px;border-radius:7px;background:#17487b;color:white;border:none;font:inherit;cursor:pointer}
+.offline-toolbar button:disabled{opacity:.45;cursor:not-allowed}
+@media(max-width:660px){.offline-toolbar{align-items:flex-start}.offline-toolbar-actions{width:100%}}
+
+.editor-key-control{display:flex;gap:6px;align-items:center;font-size:12px}.editor-key-control input{background:var(--panel,#fff);color:var(--ink,#123);border:1px solid #adbfd1;border-radius:6px;padding:7px 9px;max-width:190px;font:inherit}

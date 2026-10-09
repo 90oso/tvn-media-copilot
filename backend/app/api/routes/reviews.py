@@ -2,9 +2,10 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Header
 
 from app.core.settings import get_settings
+from app.core.editor_auth import require_editor_access
 from app.repositories.duckdb_repo import DuckDBRepository
 from app.schemas.review import ReviewRequest
 from app.services.topic_analysis import analyze_cluster
@@ -27,7 +28,8 @@ def get_review(case_id: str):
     return {"case_id": case_id, "review": record}
 
 @router.post("/{case_id}")
-def save_review(case_id: str, body: ReviewRequest):
+def save_review(case_id: str, body: ReviewRequest, x_editor_key: str | None = Header(None)):
+    require_editor_access(x_editor_key)
     settings = get_settings()
     repo = DuckDBRepository(settings.database_path)
     analysis = analyze_cluster(case_id, repo, settings)

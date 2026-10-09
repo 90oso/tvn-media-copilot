@@ -121,7 +121,15 @@ class DuckDBRepository:
 
             return pd.read_sql_query(query, con)
 
+    def _editorial_store(self):
+        import os
+        from app.repositories.editorial_store import EditorialStore
+        url = os.environ.get("EDITORIAL_DATABASE_URL")
+        return EditorialStore(url if url else "sqlite:///" + str(self.database_path.parent / "editorial.sqlite3"))
+
     def get_all_reviews(self) -> dict[str, dict]:
+        from app.repositories.editorial_store import EditorialStore
+        return self._editorial_store().all_reviews()
         """Devuelve revisiones humanas indexadas por case_id en una sola consulta."""
         with self.connect() as con:
             self._ensure_reviews_table(con)
@@ -252,6 +260,8 @@ class DuckDBRepository:
         )
 
     def save_review(self, case_id: str, action: str, state: str, reviewer: str, note: str, updated_at: str) -> dict:
+        from app.repositories.editorial_store import EditorialStore
+        return self._editorial_store().save_review(case_id, action, state, reviewer, note, updated_at)
         with self.connect() as con:
             self._ensure_reviews_table(con)
             con.execute("DELETE FROM reviews WHERE case_id=?", [case_id] if duckdb is not None else (case_id,))
@@ -263,6 +273,8 @@ class DuckDBRepository:
         return self.get_review(case_id) or {}
 
     def get_review(self, case_id: str) -> dict | None:
+        from app.repositories.editorial_store import EditorialStore
+        return self._editorial_store().get_review(case_id)
         with self.connect() as con:
             self._ensure_reviews_table(con)
             row = con.execute(

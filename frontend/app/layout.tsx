@@ -2,6 +2,7 @@ import "./globals.css";
 
 export const metadata = {
   title: "Mesa de Redacción | TVN Media Copilot",
+  manifest: "/manifest.webmanifest",
   description: "Consulta titulares, contrasta fuentes y revisa borradores antes de tomar decisiones editoriales.",
 };
 
