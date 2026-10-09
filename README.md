@@ -291,9 +291,7 @@ Antes del cierre deben verificarse:
 - demo offline;
 - pitch de 10 minutos desde Notion.
 
-## Estado de la evaluación y trabajo posterior a la entrega
-
-**Nota de cronología:** esta sección y los nuevos archivos del benchmark se publican **después de la entrega al hackathon**. No forman parte de la evidencia que existía antes del cierre.
+## Estado de la evaluación y reproducibilidad
 
 - **67 pruebas automatizadas superadas** en la copia de Windows evaluada sobre commit `11fffe0`; este valor no se transfiere automáticamente a commits posteriores.
 - **40 consultas sintéticas propuestas** en [data/benchmark/dev_40.jsonl](data/benchmark/dev_40.jsonl); no son respuestas ejecutadas, y sus etiquetas no provienen de editores humanos.
