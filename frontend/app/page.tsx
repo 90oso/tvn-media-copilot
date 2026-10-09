@@ -134,10 +134,15 @@ export default function Home() {
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const detailRequest = useRef(0);
   const searchRequest = useRef(0);
+  const evidencePaneRef = useRef<HTMLElement>(null);
+  const decisionPaneRef = useRef<HTMLElement>(null);
 
   const selectCase = useCallback(async (caseId: string) => {
     const request = ++detailRequest.current;
     setSelectedId(caseId);
+    // Un nuevo expediente vuelve al principio de su lectura, sin desplazar el radar.
+    evidencePaneRef.current?.scrollTo({ top: 0, behavior: "auto" });
+    decisionPaneRef.current?.scrollTo({ top: 0, behavior: "auto" });
     setIsCaseLoading(true);
     setError("");
     setNotice("");
@@ -256,7 +261,7 @@ export default function Home() {
         {(error || notice) && <div className={`feedback ${error ? "feedback-error" : "feedback-success"}`} role={error ? "alert" : "status"}><Icon name={error ? "alert" : "check"}/><span>{error || notice}</span><button aria-label="Cerrar aviso" onClick={() => { setError(""); setNotice(""); }}>×</button></div>}
 
         <div className="workstation">
-          <aside id="radar" className="radar-column" aria-label="Radar editorial">
+          <aside id="radar" className="radar-column" aria-label="Radar editorial; desplazamiento independiente" tabIndex={0}>
             <div className="column-caption"><span>01</span><p>RADAR DE TEMAS</p><Icon name="layers" size={16}/></div>
             <div className="radar-intro"><h2>Qué investigar <em>ahora.</em></h2><p>Busca por hechos o explora las señales clasificadas en el corpus.</p></div>
             <form className="search-form" onSubmit={submitSearch}>
@@ -283,7 +288,7 @@ export default function Home() {
             <div className="radar-footnote"><Icon name="shield" size={16}/><p>GDELT incluye medios internacionales. El filtro afecta qué eventos se descubren; las fuentes originales de cada expediente permanecen intactas y pueden estar en otros idiomas.</p></div>
           </aside>
 
-          <section id="evidencia" className="investigation-column" aria-label="Cuaderno de investigación">
+          <section id="evidencia" ref={evidencePaneRef} className="investigation-column" aria-label="Cuaderno de evidencia; desplazamiento independiente" tabIndex={0}>
             <div className="column-caption"><span>02</span><p>CUADERNO DE EVIDENCIA</p><Icon name="file" size={16}/></div>
             {isCaseLoading && <div className="panel-loading"><span className="spinner"/>Abriendo expediente editorial...</div>}
             {!isCaseLoading && !current && <div className="no-case"><Icon name="layers" size={34}/><h2>Empieza por una señal.</h2><p>Selecciona una noticia del radar o haz una búsqueda para abrir su expediente.</p></div>}
@@ -313,7 +318,7 @@ export default function Home() {
             </>}
           </section>
 
-          <aside id="decision" className="decision-column" aria-label="Mesa de decisión editorial">
+          <aside id="decision" ref={decisionPaneRef} className="decision-column" aria-label="Mesa de decisión editorial; desplazamiento independiente" tabIndex={0}>
             <div className="column-caption"><span>03</span><p>DECISIÓN EDITORIAL</p><Icon name="shield" size={16}/></div>
             {!current ? <div className="decision-empty">Selecciona un caso para habilitar las acciones de revisión.</div> : <>
               <div className="decision-status"><span className="tiny-label">ESTADO ACTUAL</span><h2>{current.workflow.state}</h2><p>{current.workflow.recommended_action}</p><div className="status-line"><span className="status-led"/><strong>No autorizado para publicar</strong></div></div>

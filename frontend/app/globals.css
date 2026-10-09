@@ -220,3 +220,90 @@
   .language-picker select { width:100%; max-width:100%; }
   .review-buttons { grid-template-columns:1fr 1fr; }
 }
+
+
+/* TVN MEDIA · Mesa de redacción v3
+   Tres paneles siempre visibles en escritorio. Cada panel se desplaza por sí mismo.
+   Se definen DESPUÉS de los breakpoints anteriores para evitar que 1570px rompa
+   la tercera columna y mande Decisión Editorial debajo de Evidencia. */
+@media (min-width: 1024px) {
+  html, body { height: 100%; overflow: hidden; }
+  .app-shell {
+    height: 100dvh; min-height: 0; overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .masthead { flex: 0 0 70px; height: 70px; min-height: 70px; }
+  .main-area {
+    width: 100%; max-width: 1920px; min-height: 0; flex: 1 1 0;
+    display: flex; flex-direction: column; overflow: hidden;
+    padding-inline: clamp(12px, 1.6vw, 32px);
+  }
+  /* Mantener información inicial, pero dar prioridad vertical a la mesa. */
+  .page-intro { padding: 11px 0 13px; gap: 18px; flex: 0 0 auto; align-items: center; }
+  .intro-main h1 { font-size: clamp(24px, 2.1vw, 33px); line-height: 1.18; margin: 3px 0 5px; }
+  .intro-main h1 br { display: none; }
+  .intro-main p { font-size: 12px; margin: 0; line-height: 1.5; }
+  .overline { font-size: 10px; }
+  .edition-stamp { min-width: 150px; padding: 8px 12px; }
+  .edition-stamp strong { font-size: 17px; }
+  .edition-stamp small { font-size: 10px; }
+  .feedback { padding: 7px 12px; margin-bottom: 8px; flex: 0 0 auto; }
+  .workstation {
+    flex: 1 1 0; height: auto; min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(215px, 0.8fr) minmax(340px, 1.6fr) minmax(310px, 1.15fr);
+    grid-template-rows: minmax(0, 1fr);
+    overflow: hidden;
+    align-items: stretch;
+  }
+  .radar-column, .investigation-column, .decision-column {
+    min-width: 0; min-height: 0; height: 100%;
+    overflow-x: hidden; overflow-y: auto;
+    overscroll-behavior-y: contain;
+    scrollbar-width: thin; scrollbar-color: var(--line) transparent;
+    scrollbar-gutter: stable;
+    scroll-behavior: smooth;
+    align-self: stretch;
+  }
+  .radar-column { grid-column: 1; grid-row: 1; border-right: 1px solid var(--line); }
+  .investigation-column { grid-column: 2; grid-row: 1; border-right: 1px solid var(--line); border-bottom: 0; }
+  .decision-column {
+    grid-column: 3; grid-row: 1; display: block;
+    border-left: 0; border-top: 0; border-bottom: 0;
+    padding: 23px 19px 35px;
+  }
+  .decision-column .column-caption, .decision-status, .evidence-focus,
+  .generate-area, .human-review { grid-column: auto; grid-row: auto; }
+  /* El desplazamiento principal debe estar en el panel, no anidado en listas o borradores. */
+  .results-list, .draft-text { max-height: none; overflow: visible; }
+  .page-footer { flex: 0 0 auto; padding: 8px 0 9px; gap: 8px; font-size: 9px; }
+}
+@media (min-width: 1024px) and (max-width: 1399px) {
+  .radar-column { padding: 18px 13px 26px; }
+  .investigation-column { padding: 18px 17px 30px; }
+  .decision-column { padding: 18px 15px 30px; }
+  .column-caption { margin-bottom: 12px; }
+  .investigation-hero h2 { font-size: clamp(24px, 2.1vw, 32px); }
+  .radar-intro h2 { font-size: 22px; }
+  .source-record,.indicator-card { padding: 12px; }
+  .edition-stamp { display: none; }
+  .decision-status h2 { font-size: 27px; }
+}
+@media (max-width: 1023px) {
+  /* Tablets y móviles: lectura vertical para evitar columnas ilegibles. */
+  html, body { height: auto; overflow: auto; }
+  .app-shell, .main-area { height: auto; min-height: 100dvh; overflow: visible; display: block; }
+  .workstation {
+    display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto;
+    min-height: 0; height: auto; overflow: visible;
+  }
+  .radar-column, .investigation-column, .decision-column {
+    display: block; grid-column: 1; grid-row: auto;
+    height: auto; min-height: 0; max-height: none; overflow: visible;
+    border-right: 0; border-left: 0;
+  }
+  .radar-column, .investigation-column { border-bottom: 1px solid var(--line); }
+  .decision-column { border-top: 0; }
+  .decision-column .column-caption, .decision-status, .evidence-focus,
+  .generate-area, .human-review { grid-column: auto; grid-row: auto; }
+}
