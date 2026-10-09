@@ -2,7 +2,7 @@ import "./globals.css";
 
 export const metadata = {
   title: "Mesa de Redacción | TVN Media Copilot",
-  description: "Investiga titulares, contrasta evidencia y registra decisiones editoriales humanas.",
+  description: "Consulta titulares, contrasta fuentes y revisa borradores antes de tomar decisiones editoriales.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
