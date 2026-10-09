@@ -104,6 +104,91 @@ function formatIndicatorValue(value: string) {
     ? new Intl.NumberFormat("es-PA", { maximumFractionDigits: 2 }).format(numeric)
     : value;
 }
+// Los borradores son copias de trabajo guardadas localmente. El registro de
+// aprobación sigue siendo responsabilidad exclusiva de la API de revisiones.
+const WORKSPACE_STORAGE_KEY = "tvn-media-copilot:workspace:v1";
+const draftStorageKey = (caseId: string) => `tvn-media-copilot:drafts:v1:${caseId}`;
+const DRAFT_MODES: DraftMode[] = ["brief", "script", "digital"];
+
+type StoredWorkspace = {
+  selectedId: string;
+  searchText: string;
+  topic: string;
+  evidenceFilter: string;
+  language: "es" | "all";
+  radarMode: "top" | "explore";
+  mode: DraftMode;
+};
+
+function evidenceSignature(pkg: EvidencePackage): string {
+  // Nunca recuperar un borrador si han cambiado sus fuentes o su elegibilidad.
+  const idsAndClaims = (pkg.evidence || []).map(e => [
+    e.evidence_id, e.source_type, e.source_name, e.field,
+    e.value, e.period || "", e.unit || "", e.url || "",
+  ]).sort((a, b) => a[0].localeCompare(b[0]));
+  return JSON.stringify({
+    evidence_state: pkg.evidence_state,
+    evidence: idsAndClaims,
+    contradictions: [...(pkg.contradictions || [])].sort(),
+    missing_information: [...(pkg.missing_information || [])].sort(),
+  });
+}
+
+function readSavedWorkspace(): StoredWorkspace | null {
+  try {
+    const raw = localStorage.getItem(WORKSPACE_STORAGE_KEY);
+    if (!raw) return null;
+    const value = JSON.parse(raw) as Partial<StoredWorkspace>;
+    if (value.language !== "es" && value.language !== "all") return null;
+    return {
+      selectedId: typeof value.selectedId === "string" ? value.selectedId : "",
+      searchText: typeof value.searchText === "string" ? value.searchText : "",
+      topic: typeof value.topic === "string" ? value.topic : "",
+      evidenceFilter: typeof value.evidenceFilter === "string" ? value.evidenceFilter : "",
+      language: value.language,
+      radarMode: value.radarMode === "explore" ? "explore" : "top",
+      mode: DRAFT_MODES.includes(value.mode as DraftMode) ? value.mode as DraftMode : "brief",
+    };
+  } catch { return null; }
+}
+
+function readSavedDrafts(caseId: string, pkg: EvidencePackage): Partial<Record<DraftMode, Generated>> {
+  try {
+    const key = draftStorageKey(caseId);
+    const raw = localStorage.getItem(key);
+    if (!raw) return {};
+    const data = JSON.parse(raw) as {
+      version?: number;
+      signature?: string;
+      drafts?: Partial<Record<DraftMode, Generated>>;
+    };
+    if (data.version !== 1 || data.signature !== evidenceSignature(pkg)) {
+      localStorage.removeItem(key);
+      return {};
+    }
+    const result: Partial<Record<DraftMode, Generated>> = {};
+    for (const mode of DRAFT_MODES) {
+      const item = data.drafts?.[mode];
+      if (item && typeof item.text === "string" && typeof item.model === "string") {
+        result[mode] = item;
+      }
+    }
+    return result;
+  } catch { return {}; }
+}
+
+function saveDrafts(caseId: string, pkg: EvidencePackage, drafts: Partial<Record<DraftMode, Generated>>): boolean {
+  try {
+    localStorage.setItem(draftStorageKey(caseId), JSON.stringify({
+      version: 1,
+      signature: evidenceSignature(pkg),
+      saved_at: new Date().toISOString(),
+      drafts,
+    }));
+    return true;
+  } catch { return false; }
+}
+
 function errorMessage(error: unknown) { return error instanceof Error ? error.message : "Ocurrió un problema al consultar el sistema."; }
 async function jsonResponse<T>(url: string, init?: RequestInit): Promise<T> {
   const response = await fetch(url, { cache: "no-store", ...init });
@@ -146,6 +231,8 @@ export default function Home() {
   const [reviewNote, setReviewNote] = useState("");
   const [focusedEvidence, setFocusedEvidence] = useState<string>("");
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [workspaceReady, setWorkspaceReady] = useState(false);
+  const [draftsRestored, setDraftsRestored] = useState(false);
   const detailRequest = useRef(0);
   const searchRequest = useRef(0);
   const evidencePaneRef = useRef<HTMLElement>(null);
@@ -162,9 +249,18 @@ export default function Home() {
     setNotice("");
     setFocusedEvidence("");
     setDrafts({});
+    setDraftsRestored(false);
     try {
       const loaded = await jsonResponse<CaseItem>(`${API}/topics/${encodeURIComponent(caseId)}/analysis`);
-      if (request === detailRequest.current) setDetail(loaded);
+      if (request === detailRequest.current) {
+        const saved = readSavedDrafts(caseId, loaded.evidence_package);
+        setDetail(loaded);
+        setDrafts(saved);
+        setDraftsRestored(Object.keys(saved).length > 0);
+        if (loaded.workflow.human_review?.reviewer) {
+          setReviewer(loaded.workflow.human_review.reviewer);
+        }
+      }
     } catch (e) {
       if (request === detailRequest.current) { setDetail(null); setError(errorMessage(e)); }
     } finally {
@@ -204,8 +300,40 @@ export default function Home() {
     jsonResponse<{ status: string; version?: string }>(`${API}/health`)
       .then(h => { setApiStatus(h.status === "ok" ? "API disponible" : "API con advertencias"); setVersion(h.version || ""); })
       .catch(() => setApiStatus("Servicio no disponible"));
-    void loadRadar();
-  }, [loadRadar]);
+
+    const saved = readSavedWorkspace();
+    if (saved) {
+      setSearchText(saved.searchText);
+      setTopic(saved.topic);
+      setEvidenceFilter(saved.evidenceFilter);
+      setLanguage(saved.language);
+      setMode(saved.mode);
+      setSelectedId(saved.selectedId);
+      void (async () => {
+        await loadRadar({
+          query: saved.radarMode === "explore" ? saved.searchText : "",
+          selectedTopic: saved.radarMode === "explore" ? saved.topic : "",
+          selectedEvidence: saved.radarMode === "explore" ? saved.evidenceFilter : "",
+          selectedLanguage: saved.language,
+          expanded: saved.radarMode === "explore",
+        }, Boolean(saved.selectedId));
+        // No sustituir un expediente investigado por el primer caso del Top 5.
+        if (saved.selectedId) await selectCase(saved.selectedId);
+      })();
+    } else {
+      void loadRadar();
+    }
+    setWorkspaceReady(true);
+  }, [loadRadar, selectCase]);
+
+  useEffect(() => {
+    if (!workspaceReady) return;
+    try {
+      localStorage.setItem(WORKSPACE_STORAGE_KEY, JSON.stringify({
+        selectedId, searchText, topic, evidenceFilter, language, radarMode, mode,
+      } satisfies StoredWorkspace));
+    } catch { /* Navegación privada o almacenamiento no disponible. */ }
+  }, [workspaceReady, selectedId, searchText, topic, evidenceFilter, language, radarMode, mode]);
 
   const selectedFromRadar = useMemo(() => agenda.find(x => x.case_id === selectedId), [agenda, selectedId]);
   const current = isCaseLoading ? null : (detail || selectedFromRadar);
@@ -228,9 +356,20 @@ export default function Home() {
     setError("");
     setNotice("");
     try {
-      const r = await jsonResponse<Generated>(`${API}/generate/${encodeURIComponent(detail.case_id)}?mode=${mode}`, { method: "POST" });
-      setDrafts(previous => ({ ...previous, [mode]: r }));
-      setNotice(r.cached ? "Se recuperó el borrador del caché. Verifica su contenido antes de aprobarlo." : "Borrador preparado. Debe revisarse antes de aprobarlo.");
+      const caseId = detail.case_id;
+      const packageAtStart = detail.evidence_package;
+      const request = detailRequest.current;
+      const r = await jsonResponse<Generated>(`${API}/generate/${encodeURIComponent(caseId)}?mode=${mode}`, { method: "POST" });
+      // Conserva el borrador incluso si se selecciona otra noticia mientras llega Gemini.
+      const existing = readSavedDrafts(caseId, packageAtStart);
+      const updated = { ...existing, ...drafts, [mode]: r };
+      const saved = saveDrafts(caseId, packageAtStart, updated);
+      if (request !== detailRequest.current) return;
+      setDrafts(updated);
+      setDraftsRestored(false);
+      setNotice(saved
+        ? "Borrador preparado y conservado en este navegador. Debe revisarse antes de aprobarlo."
+        : "Borrador preparado, pero el navegador no pudo guardarlo para la próxima visita. Copia el texto antes de salir.");
     } catch (e) { setError(errorMessage(e)); }
     finally { setIsGenerating(false); }
   }
@@ -341,7 +480,7 @@ export default function Home() {
             {!current ? <div className="decision-empty">Selecciona un caso para habilitar las acciones de revisión.</div> : <>
               <div className="decision-status"><span className="tiny-label">ESTADO DEL EXPEDIENTE</span><h2>{current.workflow.state}</h2><p>{current.workflow.recommended_action}</p><div className="status-line"><span className="status-led"/><strong>Sin publicación automática</strong></div></div>
               <div className="decision-section evidence-focus"><div className="decision-section-title"><span>EVIDENCIA SELECCIONADA</span><Icon name="file" size={16}/></div>{focused ? <><strong>{focused.source_name}</strong><p>{focused.value}</p><div className="focus-code">{focused.evidence_id} · campo: {focused.field}</div><div className="evidence-focus-actions"><button onClick={() => void copyText(`${focused.evidence_id} | ${focused.field} | ${focused.value} | ${focused.url || ""}`)}><Icon name="copy" size={15}/> Copiar referencia</button>{focused.url && <a href={focused.url} target="_blank" rel="noopener noreferrer">Fuente <Icon name="external" size={14}/></a>}</div></> : <p className="focus-placeholder">Selecciona una fuente o un indicador para consultar su identificador y su campo de origen.</p>}</div>
-              <div className="decision-section generate-area"><div className="decision-section-title"><span>PREPARACIÓN DEL BORRADOR</span><Icon name="spark" size={17}/></div><div className="draft-tabs" role="tablist" aria-label="Formato editorial">{(["brief","script","digital"] as DraftMode[]).map(m => <button type="button" role="tab" aria-selected={mode === m} className={mode === m ? "tab-active" : ""} onClick={() => setMode(m)} key={m}>{m === "brief" ? "Brief" : m === "script" ? "Guion" : "Digital"}</button>)}</div><div className="format-caption">{mode === "brief" ? "≤250 palabras · enfoque, fuentes y 3 preguntas" : mode === "script" ? "Guion estimado de 45–60 segundos" : "Copy digital de máximo 80 palabras"}</div><button type="button" className="generate-button" onClick={() => void generateDraft()} disabled={!detail?.workflow.draft_enabled || isGenerating}><Icon name={detail?.workflow.draft_enabled ? "spark" : "lock"} size={17}/>{isGenerating ? "Preparando borrador..." : "Preparar borrador"}<Icon name="arrow" size={16}/></button>{!detail?.workflow.draft_enabled && <p className="disabled-explanation">Bloqueado: este caso requiere evidencia adicional.</p>}{selectedDraft && <div className="draft-result"><div className="draft-result-head"><Marker tone="green">{selectedDraft.cached ? "Del caché" : "Generado"}</Marker><span>{selectedDraft.model}</span></div><div className="draft-text">{selectedDraft.text}</div>{selectedDraft.quality && <div className="draft-quality"><span>IDs de citas: {Math.round((selectedDraft.quality.citation_coverage ?? 0) * 100)}% <small>(no acredita sustento semántico)</small></span>{selectedDraft.quality.main_text_word_count != null && <span>Palabras: {selectedDraft.quality.main_text_word_count}</span>}</div>}<button type="button" onClick={() => void copyText(selectedDraft.text)} className="copy-draft"><Icon name="copy" size={14}/> Copiar texto para revisar</button><div className="draft-caveat">Texto asistido: verifica las afirmaciones y las fuentes antes de aprobar.</div></div>}</div>
+              <div className="decision-section generate-area"><div className="decision-section-title"><span>PREPARACIÓN DEL BORRADOR</span><Icon name="spark" size={17}/></div><div className="draft-tabs" role="tablist" aria-label="Formato editorial">{(["brief","script","digital"] as DraftMode[]).map(m => <button type="button" role="tab" aria-selected={mode === m} className={mode === m ? "tab-active" : ""} onClick={() => setMode(m)} key={m}>{m === "brief" ? "Brief" : m === "script" ? "Guion" : "Digital"}</button>)}</div><div className="format-caption">{mode === "brief" ? "≤250 palabras · enfoque, fuentes y 3 preguntas" : mode === "script" ? "Guion estimado de 45–60 segundos" : "Copy digital de máximo 80 palabras"}</div><button type="button" className="generate-button" onClick={() => void generateDraft()} disabled={!detail?.workflow.draft_enabled || isGenerating}><Icon name={detail?.workflow.draft_enabled ? "spark" : "lock"} size={17}/>{isGenerating ? "Preparando borrador..." : "Preparar borrador"}<Icon name="arrow" size={16}/></button>{!detail?.workflow.draft_enabled && <p className="disabled-explanation">Bloqueado: este caso requiere evidencia adicional.</p>}{selectedDraft && <div className="draft-result"><div className="draft-result-head"><Marker tone="green">{selectedDraft.cached ? "Del caché" : "Generado"}</Marker><span>{selectedDraft.model}</span></div><div className="draft-text">{selectedDraft.text}</div>{selectedDraft.quality && <div className="draft-quality"><span>IDs de citas: {Math.round((selectedDraft.quality.citation_coverage ?? 0) * 100)}% <small>(no acredita sustento semántico)</small></span>{selectedDraft.quality.main_text_word_count != null && <span>Palabras: {selectedDraft.quality.main_text_word_count}</span>}</div>}<button type="button" onClick={() => void copyText(selectedDraft.text)} className="copy-draft"><Icon name="copy" size={14}/> Copiar texto para revisar</button><div className="draft-caveat">Texto asistido: verifica las afirmaciones y las fuentes antes de aprobar.{draftsRestored && <span> Borrador restaurado de este navegador; la decisión editorial se consulta al servidor.</span>}</div></div>}</div>
               <div className="decision-section human-review"><div className="decision-section-title"><span>REVISIÓN HUMANA</span><Icon name="check" size={17}/></div><label htmlFor="reviewer" className="review-label">PERSONA REVISORA</label><input id="reviewer" value={reviewer} onChange={e => setReviewer(e.target.value)} placeholder="Nombre o identificador" maxLength={120}/><label htmlFor="review-note" className="review-label">NOTA EDITORIAL</label><textarea id="review-note" value={reviewNote} onChange={e => setReviewNote(e.target.value)} placeholder="Indica qué información debe comprobarse o corregirse…" maxLength={2000}/><div className="review-buttons"><button type="button" onClick={() => void submitReview("approve")} disabled={!canApprove || isReviewing} className="approve-btn"><Icon name="check" size={16}/> Aprobar borrador</button><button type="button" onClick={() => void submitReview("correct")} disabled={!reviewer.trim() || isReviewing} className="correct-btn">Solicitar corrección</button><button type="button" onClick={() => void submitReview("discard")} disabled={!reviewer.trim() || isReviewing} className="discard-btn">Descartar</button></div>{current.workflow.human_review && <div className="review-record"><span>ÚLTIMO REGISTRO</span><strong>{current.workflow.human_review.state}</strong><small>{current.workflow.human_review.reviewer} · {humanDate(current.workflow.human_review.updated_at)}</small>{current.workflow.human_review.note && <p>{current.workflow.human_review.note}</p>}</div>}<p className="review-disclaimer">Aprobar un borrador no equivale a publicarlo. Antes de aprobar, revisa su contenido y sus fuentes.</p></div>
             </>}
           </aside>
