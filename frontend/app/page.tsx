@@ -259,7 +259,6 @@ export default function Home() {
   const [workspaceReady, setWorkspaceReady] = useState(false);
   const [draftsRestored, setDraftsRestored] = useState(false);
   const [isOnline, setIsOnline] = useState(true);
-  const [offlinePreparing, setOfflinePreparing] = useState(false);
   const [queuedReviews, setQueuedReviews] = useState(0);
   const [editorKey, setEditorKey] = useState("");
 
@@ -313,7 +312,7 @@ export default function Home() {
         setApiStatus("Sin conexión · expediente guardado");
         setNotice("Expediente consultado desde la copia de este navegador. Las fuentes no se han actualizado.");
       } else if (request === detailRequest.current) {
-        setDetail(null); setError(`No se pudo cargar el expediente: ${errorMessage(e)}. Prepara su copia mientras haya conexión.`);
+        setDetail(null); setError(`No se pudo cargar el expediente: ${errorMessage(e)}. Para consultarlo sin conexión, ábrelo primero mientras tengas acceso a Internet.`);
       }
     } finally {
       if (request === detailRequest.current) setIsCaseLoading(false);
@@ -348,6 +347,14 @@ export default function Home() {
         setApiStatus("Sin conexión · radar guardado");
       }
       if (request !== searchRequest.current) return;
+      // Los expedientes que ya aparecen en el radar quedan disponibles en este
+      // navegador sin descargar uno por uno. No sustituir una ficha completa
+      // que el usuario haya abierto anteriormente.
+      if (!fromSnapshot) for (const item of result.items || []) {
+        if (item.case_id && item.evidence_package && !localRead<CaseItem>(caseSnapshotKey(item.case_id))) {
+          localWrite(caseSnapshotKey(item.case_id), item);
+        }
+      }
       if (fromSnapshot) setNotice("Mostrando el radar guardado. No se están recibiendo noticias nuevas.");
       setAgenda(result.items || []);
       setResultTotal(result.total_matches ?? result.items?.length ?? 0);
@@ -494,22 +501,6 @@ export default function Home() {
     catch { setNotice("Este navegador no permite conservar la clave de edición durante la sesión."); }
   }
 
-  async function prepareOffline() {
-    if (!navigator.onLine) { setNotice("Conéctate a Internet para preparar una copia del radar."); return; }
-    setOfflinePreparing(true);
-    setError("");
-    let savedCount = 0;
-    // Descarga explícita de las fichas visibles; no equivale a descargar todo el corpus.
-    for (const item of agenda.slice(0, 30)) {
-      try {
-        const record = await jsonResponse<CaseItem>(`${API}/topics/${encodeURIComponent(item.case_id)}/analysis`);
-        if (localWrite(caseSnapshotKey(item.case_id), record)) savedCount++;
-      } catch { /* guardar expedientes disponibles y reportar cantidad real */ }
-    }
-    setOfflinePreparing(false);
-    setNotice(`Copia offline preparada para ${savedCount} de ${Math.min(agenda.length, 30)} expedientes visibles. El buscador offline usa las consultas realizadas anteriormente.`);
-  }
-
   async function synchronizeReviews() {
     if (!navigator.onLine) { setNotice("La sincronización requiere conexión a Internet."); return; }
     const pending = readPendingReviews();
@@ -564,14 +555,19 @@ export default function Home() {
           <div className="edition-stamp"><span>ARCHIVO DE TRABAJO</span><strong>Panamá</strong><small>Datos públicos · Sin publicación automática</small></div>
         </div>
 
-        <div className="offline-toolbar" role="status">
-          <span>{!isOnline || apiStatus.startsWith("Sin conexión") || apiStatus === "Servicio no disponible" ? "● Consulta offline: datos guardados, no actualizados" : "● Conexión disponible"}</span>
-          <div className="offline-toolbar-actions">
-            <label className="editor-key-control">Clave editorial (opcional)<input type="password" autoComplete="off" value={editorKey} onChange={e => updateEditorKey(e.target.value)} placeholder="Solo si Render la requiere" aria-label="Clave privada de edición" /></label>
-            <button type="button" disabled={offlinePreparing || !agenda.length || !isOnline} onClick={() => void prepareOffline()}>{offlinePreparing ? "Preparando copia…" : "Guardar expedientes visibles para uso offline"}</button>
-            <button type="button" disabled={!queuedReviews || !isOnline} onClick={() => void synchronizeReviews()}>Sincronizar revisiones ({queuedReviews})</button>
+        {(!isOnline || apiStatus.startsWith("Sin conexión") || apiStatus === "Servicio no disponible" || queuedReviews > 0) && (
+          <div className="offline-toolbar" role="status">
+            <span className="offline-toolbar-message">
+              {!isOnline ? "Sin conexión: puedes consultar los expedientes y borradores que hayas abierto previamente."
+                : apiStatus === "Servicio no disponible" || apiStatus.startsWith("Sin conexión")
+                  ? "Servicio temporalmente no disponible: se mostrarán copias anteriores, cuando existan."
+                  : `${queuedReviews} ${queuedReviews === 1 ? "revisión pendiente" : "revisiones pendientes"} de registrar en el servidor.`}
+            </span>
+            {queuedReviews > 0 && <button type="button" disabled={!isOnline || isReviewing} onClick={() => void synchronizeReviews()}>
+              {isOnline ? `Sincronizar revisiones (${queuedReviews})` : `${queuedReviews} pendientes de sincronizar`}
+            </button>}
           </div>
-        </div>
+        )}
         {(error || notice) && <div className={`feedback ${error ? "feedback-error" : "feedback-success"}`} role={error ? "alert" : "status"}><Icon name={error ? "alert" : "check"}/><span>{error || notice}</span><button aria-label="Cerrar aviso" onClick={() => { setError(""); setNotice(""); }}>×</button></div>}
 
         <div className="workstation">
@@ -638,7 +634,12 @@ export default function Home() {
               <div className="decision-status"><span className="tiny-label">ESTADO DEL EXPEDIENTE</span><h2>{current.workflow.state}</h2><p>{current.workflow.recommended_action}</p><div className="status-line"><span className="status-led"/><strong>Sin publicación automática</strong></div></div>
               <div className="decision-section evidence-focus"><div className="decision-section-title"><span>EVIDENCIA SELECCIONADA</span><Icon name="file" size={16}/></div>{focused ? <><strong>{focused.source_name}</strong><p>{focused.value}</p><div className="focus-code">{focused.evidence_id} · campo: {focused.field}</div><div className="evidence-focus-actions"><button onClick={() => void copyText(`${focused.evidence_id} | ${focused.field} | ${focused.value} | ${focused.url || ""}`)}><Icon name="copy" size={15}/> Copiar referencia</button>{focused.url && <a href={focused.url} target="_blank" rel="noopener noreferrer">Fuente <Icon name="external" size={14}/></a>}</div></> : <p className="focus-placeholder">Selecciona una fuente o un indicador para consultar su identificador y su campo de origen.</p>}</div>
               <div className="decision-section generate-area"><div className="decision-section-title"><span>PREPARACIÓN DEL BORRADOR</span><Icon name="spark" size={17}/></div><div className="draft-tabs" role="tablist" aria-label="Formato editorial">{(["brief","script","digital"] as DraftMode[]).map(m => <button type="button" role="tab" aria-selected={mode === m} className={mode === m ? "tab-active" : ""} onClick={() => setMode(m)} key={m}>{m === "brief" ? "Brief" : m === "script" ? "Guion" : "Digital"}</button>)}</div><div className="format-caption">{mode === "brief" ? "≤250 palabras · enfoque, fuentes y 3 preguntas" : mode === "script" ? "Guion estimado de 45–60 segundos" : "Copy digital de máximo 80 palabras"}</div><button type="button" className="generate-button" onClick={() => void generateDraft()} disabled={!detail?.workflow.draft_enabled || isGenerating}><Icon name={detail?.workflow.draft_enabled ? "spark" : "lock"} size={17}/>{isGenerating ? "Preparando borrador..." : "Preparar borrador"}<Icon name="arrow" size={16}/></button>{!detail?.workflow.draft_enabled && <p className="disabled-explanation">Bloqueado: este caso requiere evidencia adicional.</p>}{selectedDraft && <div className="draft-result"><div className="draft-result-head"><Marker tone="green">{selectedDraft.cached ? "Del caché" : "Generado"}</Marker><span>{selectedDraft.model}</span></div><div className="draft-text">{selectedDraft.text}</div>{selectedDraft.quality && <div className="draft-quality"><span>IDs de citas: {Math.round((selectedDraft.quality.citation_coverage ?? 0) * 100)}% <small>(no acredita sustento semántico)</small></span>{selectedDraft.quality.main_text_word_count != null && <span>Palabras: {selectedDraft.quality.main_text_word_count}</span>}</div>}<button type="button" onClick={() => void copyText(selectedDraft.text)} className="copy-draft"><Icon name="copy" size={14}/> Copiar texto para revisar</button><div className="draft-caveat">Texto asistido: verifica las afirmaciones y las fuentes antes de aprobar.{draftsRestored && <span> Borrador restaurado de este navegador; la decisión editorial se consulta al servidor.</span>}</div></div>}</div>
-              <div className="decision-section human-review"><div className="decision-section-title"><span>REVISIÓN HUMANA</span><Icon name="check" size={17}/></div><label htmlFor="reviewer" className="review-label">PERSONA REVISORA</label><input id="reviewer" value={reviewer} onChange={e => setReviewer(e.target.value)} placeholder="Nombre o identificador" maxLength={120}/><label htmlFor="review-note" className="review-label">NOTA EDITORIAL</label><textarea id="review-note" value={reviewNote} onChange={e => setReviewNote(e.target.value)} placeholder="Indica qué información debe comprobarse o corregirse…" maxLength={2000}/><div className="review-buttons"><button type="button" onClick={() => void submitReview("approve")} disabled={!canApprove || isReviewing} className="approve-btn"><Icon name="check" size={16}/> Aprobar borrador</button><button type="button" onClick={() => void submitReview("correct")} disabled={!reviewer.trim() || isReviewing} className="correct-btn">Solicitar corrección</button><button type="button" onClick={() => void submitReview("discard")} disabled={!reviewer.trim() || isReviewing} className="discard-btn">Descartar</button></div>{current.workflow.human_review && <div className="review-record"><span>ÚLTIMO REGISTRO</span><strong>{current.workflow.human_review.state}</strong><small>{current.workflow.human_review.reviewer} · {humanDate(current.workflow.human_review.updated_at)}</small>{current.workflow.human_review.note && <p>{current.workflow.human_review.note}</p>}</div>}<p className="review-disclaimer">Aprobar un borrador no equivale a publicarlo. Antes de aprobar, revisa su contenido y sus fuentes.</p></div>
+              <div className="decision-section human-review"><div className="decision-section-title"><span>REVISIÓN HUMANA</span><Icon name="check" size={17}/></div><label htmlFor="reviewer" className="review-label">PERSONA REVISORA</label><input id="reviewer" value={reviewer} onChange={e => setReviewer(e.target.value)} placeholder="Nombre o identificador" maxLength={120}/><label htmlFor="review-note" className="review-label">NOTA EDITORIAL</label><textarea id="review-note" value={reviewNote} onChange={e => setReviewNote(e.target.value)} placeholder="Indica qué información debe comprobarse o corregirse…" maxLength={2000}/><div className="review-buttons"><button type="button" onClick={() => void submitReview("approve")} disabled={!canApprove || isReviewing} className="approve-btn"><Icon name="check" size={16}/> Aprobar borrador</button><button type="button" onClick={() => void submitReview("correct")} disabled={!reviewer.trim() || isReviewing} className="correct-btn">Solicitar corrección</button><button type="button" onClick={() => void submitReview("discard")} disabled={!reviewer.trim() || isReviewing} className="discard-btn">Descartar</button></div>{current.workflow.human_review && <div className="review-record"><span>ÚLTIMO REGISTRO</span><strong>{current.workflow.human_review.state}</strong><small>{current.workflow.human_review.reviewer} · {humanDate(current.workflow.human_review.updated_at)}</small>{current.workflow.human_review.note && <p>{current.workflow.human_review.note}</p>}</div>}<p className="review-disclaimer">Aprobar un borrador no equivale a publicarlo. Antes de aprobar, revisa su contenido y sus fuentes.</p>
+                <details className="editor-advanced"><summary>Configuración avanzada de edición</summary>
+                  <p>Solo es necesaria si la administración habilitó una contraseña para generar borradores y registrar revisiones. No es la clave de Render ni de Gemini.</p>
+                  <label htmlFor="editor-access-key">Clave de edición de la aplicación</label>
+                  <input id="editor-access-key" type="password" autoComplete="off" value={editorKey} onChange={e => updateEditorKey(e.target.value)} placeholder="Dejar vacío si no se configuró" />
+                </details></div>
             </>}
           </aside>
         </div>

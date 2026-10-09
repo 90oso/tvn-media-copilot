@@ -466,11 +466,55 @@
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
 
-/* Copia y sincronización: una franja de estado sin invadir los tres paneles. */
-.offline-toolbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:10px 18px;border:1px solid var(--line, #cdd8e5);border-radius:10px;background:var(--panel, #f4f8fd);margin:8px 0 16px;font-size:13px}
-.offline-toolbar-actions{display:flex;gap:8px;flex-wrap:wrap}
-.offline-toolbar button{padding:8px 12px;border-radius:7px;background:#17487b;color:white;border:none;font:inherit;cursor:pointer}
-.offline-toolbar button:disabled{opacity:.45;cursor:not-allowed}
-@media(max-width:660px){.offline-toolbar{align-items:flex-start}.offline-toolbar-actions{width:100%}}
-
-.editor-key-control{display:flex;gap:6px;align-items:center;font-size:12px}.editor-key-control input{background:var(--panel,#fff);color:var(--ink,#123);border:1px solid #adbfd1;border-radius:6px;padding:7px 9px;max-width:190px;font:inherit}
+/* Estado discreto; las copias de los expedientes consultados se guardan automáticamente. */
+.offline-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 10px 15px;
+  border: 1px solid var(--line);
+  background: var(--sheet-2);
+  color: var(--text);
+  border-radius: 10px;
+  margin: 4px 0 14px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.offline-toolbar-message { color: var(--text); }
+.offline-toolbar button {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  padding: 9px 12px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.offline-toolbar button:disabled { opacity: .65; cursor: not-allowed; }
+/* La contraseña opcional nunca ocupa espacio en el flujo principal. */
+.editor-advanced {
+  margin-top: 20px;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.editor-advanced summary { cursor: pointer; color: var(--muted); font-weight: 650; line-height: 1.6; }
+.editor-advanced[open] summary { color: var(--text); }
+.editor-advanced p { margin: 12px 0; line-height: 1.6; color: var(--muted); }
+.editor-advanced label { display: block; margin: 12px 0 7px; color: var(--text); font-weight: 650; }
+.editor-advanced input {
+  display: block; width: 100%; max-width: 330px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  background: var(--sheet);
+  color: var(--text);
+  border-radius: 8px;
+  font: inherit;
+}
+.editor-advanced input::placeholder { color: var(--muted); opacity: .88; }
+.editor-advanced input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width:660px) { .offline-toolbar { align-items: flex-start; } }
