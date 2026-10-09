@@ -291,6 +291,18 @@ Antes del cierre deben verificarse:
 - demo offline;
 - pitch de 10 minutos desde Notion.
 
+## Estado de la evaluación y trabajo posterior a la entrega
+
+**Nota de cronología:** esta sección y los nuevos archivos del benchmark se publican **después de la entrega al hackathon**. No forman parte de la evidencia que existía antes del cierre.
+
+- **67 pruebas automatizadas superadas** en la copia de Windows evaluada sobre commit `11fffe0`; este valor no se transfiere automáticamente a commits posteriores.
+- **40 consultas sintéticas propuestas** en [data/benchmark/dev_40.jsonl](data/benchmark/dev_40.jsonl); no son respuestas ejecutadas, y sus etiquetas no provienen de editores humanos.
+- **Evaluador reproducible** en [scripts/evaluate_editorial_benchmark.py](scripts/evaluate_editorial_benchmark.py). Ejecutado sin respuestas, devuelve `NO_EVALUADO` y métricas `null`, nunca un resultado inventado.
+- **T07 contra Gemini real, T10 integral offline y persistencia después de reiniciar Render:** **NO VERIFICADOS**. El protocolo para comprobarlos está en [docs/PROTOCOLOS_VERIFICACION_PENDIENTE.md](docs/PROTOCOLOS_VERIFICACION_PENDIENTE.md).
+- [Resumen de pruebas y brechas](docs/ESTADO_REAL_EVALUACION.md) · [Guía del benchmark](data/benchmark/README.md).
+
+La validación humana real requiere una persona revisora auténtica, fuentes revisadas y fecha verificable. No se atribuyen simulaciones a personas reales.
+
 ## Seguridad y límites
 
 - No guardar secretos en Git, logs o Notion público.
