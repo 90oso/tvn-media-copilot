@@ -116,7 +116,8 @@ def explore_events(
     reference = repo.get_snapshot_reference()
     reviews = repo.get_all_reviews()
     matched = []
-
+    # Token overlap is a fallback when a phrase is absent verbatim.
+    # Topic fields remain part of retrieval; the score is not factual confidence.
     for cid, frame in news.groupby(col, sort=False, dropna=True):
         preview_frame = spanish_only(frame) if language == "es" else frame
         if preview_frame.empty:
@@ -127,6 +128,7 @@ def explore_events(
             continue
         # Recuperación léxica interpretable (no respuesta generativa).
         hits = [term for term in terms if term in titles or term in topics]
+        lexical_relevance = len(hits) / max(1, len(terms))
         if terms and not hits:
             continue
         # Si la pregunta está formada solo por stopwords, no se inventa un filtro.
@@ -144,6 +146,7 @@ def explore_events(
         entry.update(_preview(preview_frame))
         entry["case_languages"] = case_languages(frame)
         entry["search_matches"] = hits
+        entry["retrieval"] = {"mode": "lexical_metadata", "term_coverage": round(lexical_relevance, 3), "matched_terms": hits}
         matched.append(entry)
 
     # Primero la relevancia de la consulta, luego el ranking oficial sin modificar su fórmula.
