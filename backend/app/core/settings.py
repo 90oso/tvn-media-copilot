@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from pydantic import BaseModel
 
 class Settings(BaseModel):
-    app_name: str = 'TVN Media Copilot'
+    app_name: str = 'Media Copilot'
     app_version: str = '0.9.1'
     app_env: str = 'development'
     database_path: Path = Path('data/app.duckdb')
@@ -28,7 +28,7 @@ class Settings(BaseModel):
 def get_settings() -> Settings:
     load_dotenv()
     return Settings(
-        app_name=os.getenv('APP_NAME','TVN Media Copilot'),
+        app_name=os.getenv('APP_NAME','Media Copilot'),
         app_version=os.getenv('APP_VERSION','0.9.1'),
         app_env=os.getenv('APP_ENV','development'),
         database_path=Path(os.getenv('DATABASE_PATH','data/app.duckdb')),
