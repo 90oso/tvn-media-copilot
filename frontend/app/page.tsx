@@ -239,6 +239,8 @@ function stateTone(value: string): "neutral" | "amber" | "green" {
 export default function Home() {
   const [agenda, setAgenda] = useState<CaseItem[]>([]);
   const [decisionProfile, setDecisionProfile] = useState<"editorial" | "business" | "research">("editorial");
+  const [researchBusy, setResearchBusy] = useState(false);
+  const [researchResult, setResearchResult] = useState<{status:string;steps:{tool:string;status:string;purpose:string}[];cases:CaseItem[];limitations:string[]} | null>(null);
   const [selectedId, setSelectedId] = useState<string>("");
   const [detail, setDetail] = useState<CaseItem | null>(null);
   const [searchText, setSearchText] = useState("");
@@ -376,7 +378,7 @@ export default function Home() {
     } finally {
       if (request === searchRequest.current) setIsLoading(false);
     }
-  }, [selectCase]);
+  }, [selectCase, decisionProfile]);
 
   useEffect(() => {
     const refresh = () => { setIsOnline(navigator.onLine); setQueuedReviews(readPendingReviews().length); };
@@ -561,6 +563,26 @@ export default function Home() {
 
       <main className="main-area">
         {detail?.decision_support && <section aria-label="Apoyo a decisiones" style={{padding:16,border:"1px solid #36536a",borderRadius:12,marginBottom:16}}><strong>Apoyo a decisiones · {detail.decision_support.profile}</strong><p>{detail.decision_support.assessment}</p><p><strong>Siguiente paso sugerido:</strong> {detail.decision_support.recommended_next_step}</p><small>Requiere revisión humana. No ejecuta decisiones automáticamente.</small></section>}
+        <section aria-label="Investigación orientada a decisiones" style={{padding:18,border:"1px solid #36536a",borderRadius:14,marginBottom:18}}>
+          <h2 style={{margin:"0 0 8px"}}>Investigación orientada a decisiones</h2>
+          <p style={{margin:"0 0 12px"}}>Introduce un objetivo y examina qué evidencia del corpus puede ayudarte a decidir. Sin acciones automáticas ni acceso a fuentes en vivo.</p>
+          <label htmlFor="research-objective">Objetivo de investigación</label>
+          <textarea id="research-objective" value={searchText} onChange={e=>setSearchText(e.target.value)} maxLength={240} rows={2} placeholder="¿Qué señales del sector logístico merecen seguimiento?..." style={{display:"block",width:"100%",padding:12,margin:"8px 0",borderRadius:8}} />
+          <button type="button" disabled={researchBusy || searchText.trim().length < 8} onClick={async()=>{
+            setResearchBusy(true);setResearchResult(null);setError("");
+            try{
+              const response=await fetch(`${API}/research/investigate`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({objective:searchText.trim(),profile:decisionProfile,limit:5,...(dateFrom?{date_from:dateFrom}:{}),...(dateTo?{date_to:dateTo}:{})})});
+              if(!response.ok)throw new Error(`Error de investigación HTTP ${response.status}`);
+              const data=await response.json();setResearchResult(data);
+            }catch(e){setError(errorMessage(e));}finally{setResearchBusy(false);}
+          }}>{researchBusy?"Investigando…":"Investigar con evidencias"}</button>
+          {researchResult && <div aria-live="polite" style={{marginTop:12}}>
+            <strong>{researchResult.cases.length} acontecimientos recuperados</strong>
+            <ol>{researchResult.steps.map(step=><li key={step.tool}>{step.purpose} · {step.status}</li>)}</ol>
+            {researchResult.cases.length===0?<p>Evidencia insuficiente en el corpus disponible. No se genera una conclusión.</p>:researchResult.cases.map(item=><article key={item.case_id} style={{padding:"12px 0",borderTop:"1px solid #36536a"}}><strong>{sourceHeadline(item)}</strong><p>{item.decision_support?.recommended_next_step || "Revisar las fuentes originales."}</p><button type="button" onClick={()=>void selectCase(item.case_id)}>Abrir expediente</button></article>)}
+            <small>{researchResult.limitations.join(" · ")}</small>
+          </div>}
+        </section>
         <div className="page-intro">
           <div className="intro-main">
             <div className="overline"><span className="overline-line"/> INTELIGENCIA DE DECISIONES <span className="intro-version">/ PANAMÁ</span></div>
