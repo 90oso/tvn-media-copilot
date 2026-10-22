@@ -1,9 +1,9 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Mesa de Redacción | TVN Media Copilot",
+  title: "Media Copilot | Inteligencia informativa",
   manifest: "/manifest.webmanifest",
-  description: "Consulta titulares, contrasta fuentes y revisa borradores antes de tomar decisiones editoriales.",
+  description: "Explora señales públicas, evalúa evidencia y crea informes revisables para diferentes organizaciones.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

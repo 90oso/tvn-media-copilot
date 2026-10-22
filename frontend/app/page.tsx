@@ -139,6 +139,8 @@ type StoredWorkspace = {
   selectedId: string;
   searchText: string;
   topic: string;
+  dateFrom: string;
+  dateTo: string;
   evidenceFilter: string;
   language: "es" | "all";
   radarMode: "top" | "explore";
@@ -168,6 +170,8 @@ function readSavedWorkspace(): StoredWorkspace | null {
     return {
       selectedId: typeof value.selectedId === "string" ? value.selectedId : "",
       searchText: typeof value.searchText === "string" ? value.searchText : "",
+      dateFrom: typeof value.dateFrom === "string" ? value.dateFrom : "",
+      dateTo: typeof value.dateTo === "string" ? value.dateTo : "",
       topic: typeof value.topic === "string" ? value.topic : "",
       evidenceFilter: typeof value.evidenceFilter === "string" ? value.evidenceFilter : "",
       language: value.language,
@@ -237,6 +241,8 @@ export default function Home() {
   const [detail, setDetail] = useState<CaseItem | null>(null);
   const [searchText, setSearchText] = useState("");
   const [topic, setTopic] = useState("");
+  const [dateFrom, setDateFrom] = useState("");
+  const [dateTo, setDateTo] = useState("");
   const [evidenceFilter, setEvidenceFilter] = useState("");
   const [language, setLanguage] = useState<"es" | "all">("es");
   const [radarMode, setRadarMode] = useState<"top" | "explore">("top");
@@ -319,20 +325,22 @@ export default function Home() {
     }
   }, []);
 
-  const loadRadar = useCallback(async (params?: { query?: string; selectedTopic?: string; selectedEvidence?: string; selectedLanguage?: "es" | "all"; expanded?: boolean }, keepSelected = false) => {
+  const loadRadar = useCallback(async (params?: { query?: string; selectedTopic?: string; selectedEvidence?: string; selectedLanguage?: "es" | "all"; dateFrom?: string; dateTo?: string; expanded?: boolean }, keepSelected = false) => {
     const request = ++searchRequest.current;
     const q = params?.query?.trim() || "";
     const t = params?.selectedTopic || "";
     const e = params?.selectedEvidence || "";
+    const from = params?.dateFrom || "";
+    const to = params?.dateTo || "";
     const lang = params?.selectedLanguage || "es";
-    const explore = !!params?.expanded || !!q || !!t || !!e;
+    const explore = !!params?.expanded || !!q || !!t || !!e || !!from || !!to;
     setIsLoading(true);
     setError("");
     setRadarMode(explore ? "explore" : "top");
     setSearchDescription("");
     try {
       const url = explore
-        ? `${API}/explore?${new URLSearchParams({ q, topic: t, evidence: e, language: lang, limit: "30" })}`
+        ? `${API}/explore?${new URLSearchParams({ q, topic: t, evidence: e, language: lang, date_from: from, date_to: to, limit: "30" })}`
         : `${API}/agenda?${new URLSearchParams({limit: "5", language: lang})}`;
       let result: SearchResult;
       let fromSnapshot = false;
@@ -389,6 +397,8 @@ export default function Home() {
     if (saved) {
       setSearchText(saved.searchText);
       setTopic(saved.topic);
+      setDateFrom(saved.dateFrom);
+      setDateTo(saved.dateTo);
       setEvidenceFilter(saved.evidenceFilter);
       setLanguage(saved.language);
       setMode(saved.mode);
@@ -398,6 +408,8 @@ export default function Home() {
           query: saved.radarMode === "explore" ? saved.searchText : "",
           selectedTopic: saved.radarMode === "explore" ? saved.topic : "",
           selectedEvidence: saved.radarMode === "explore" ? saved.evidenceFilter : "",
+          dateFrom: saved.dateFrom,
+          dateTo: saved.dateTo,
           selectedLanguage: saved.language,
           expanded: saved.radarMode === "explore",
         }, Boolean(saved.selectedId));
@@ -414,10 +426,10 @@ export default function Home() {
     if (!workspaceReady) return;
     try {
       localStorage.setItem(WORKSPACE_STORAGE_KEY, JSON.stringify({
-        selectedId, searchText, topic, evidenceFilter, language, radarMode, mode,
+        selectedId, searchText, topic, dateFrom, dateTo, evidenceFilter, language, radarMode, mode,
       } satisfies StoredWorkspace));
     } catch { /* Navegación privada o almacenamiento no disponible. */ }
-  }, [workspaceReady, selectedId, searchText, topic, evidenceFilter, language, radarMode, mode]);
+  }, [workspaceReady, selectedId, searchText, topic, dateFrom, dateTo, evidenceFilter, language, radarMode, mode]);
 
   const selectedFromRadar = useMemo(() => agenda.find(x => x.case_id === selectedId), [agenda, selectedId]);
   const current = isCaseLoading ? null : (detail || selectedFromRadar);
@@ -432,7 +444,7 @@ export default function Home() {
 
   async function submitSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    await loadRadar({ query: searchText, selectedTopic: topic, selectedEvidence: evidenceFilter, selectedLanguage: language, expanded: true });
+    await loadRadar({ query: searchText, selectedTopic: topic, selectedEvidence: evidenceFilter, selectedLanguage: language, dateFrom, dateTo, expanded: true });
   }
   async function generateDraft() {
     if (!detail?.workflow?.draft_enabled) return;
@@ -540,7 +552,7 @@ export default function Home() {
   return (
     <div className="app-shell" data-theme={theme}>
       <header className="masthead">
-        <div className="brand-lockup"><div className="brand-symbol" aria-hidden="true">tvn<span>•</span></div><div className="brand-lines"><strong>TVN MEDIA <small> / COPILOTO</small></strong><span>MESA DE REDACCIÓN</span></div></div>
+        <div className="brand-lockup"><div className="brand-symbol" aria-hidden="true">MC<span>•</span></div><div className="brand-lines"><strong>MEDIA COPILOT <small> / INTELIGENCIA</small></strong><span>SEÑALES · EVIDENCIA · DECISIONES</span></div></div>
         <nav className="masthead-nav" aria-label="Recorrido editorial"><a className="nav-on" href="#radar">01 · Radar</a><a href="#evidencia">02 · Fuentes</a><a href="#decision">03 · Revisión</a></nav>
         <div className="masthead-actions"><div className="api-indicator" title={version ? `API ${version}` : apiStatus}><span className={apiStatus === "API disponible" ? "online-dot" : "offline-dot"}/>{apiStatus === "API disponible" ? "Sistema disponible" : apiStatus}</div><button className="icon-button theme-toggle" type="button" aria-label={theme === "light" ? "Cambiar a modo oscuro" : "Cambiar a modo claro"} onClick={() => setTheme(v => v === "light" ? "dark" : "light")}><Icon name={theme === "light" ? "moon" : "sun"}/></button></div>
       </header>
@@ -578,13 +590,17 @@ export default function Home() {
               <label className="field-label" htmlFor="editorial-query">BUSCAR TEMAS O TITULARES</label>
               <div className="search-box"><Icon name="search" size={17}/><input id="editorial-query" value={searchText} onChange={e => setSearchText(e.target.value)} placeholder="Empleo, turismo, Canal de Panamá…" maxLength={240}/><button type="submit" aria-label="Buscar eventos" disabled={isLoading}><Icon name="arrow" size={17}/></button></div>
               <div className="filter-row"><label><span>TEMA</span><select value={topic} onChange={e => setTopic(e.target.value)}><option value="">Todas</option><option value="economía">Economía</option><option value="logística">Canal / logística</option><option value="turismo">Turismo</option><option value="servicios públicos">Servicios públicos</option><option value="eventos naturales">Eventos naturales</option><option value="regulación">Regulación</option></select></label><label><span>EVIDENCIA</span><select value={evidenceFilter} onChange={e => setEvidenceFilter(e.target.value)}><option value="">Todos</option><option value="suficiente para el borrador">Suficiente</option><option value="parcial">Parcial</option><option value="insuficiente">Insuficiente</option></select></label></div>
-              <label className="language-picker" htmlFor="language-filter"><span><Icon name="layers" size={15}/> Idioma de los titulares</span><select id="language-filter" value={language} onChange={e => { const next = e.target.value as "es" | "all"; setLanguage(next); void loadRadar({ query: searchText, selectedTopic: topic, selectedEvidence: evidenceFilter, selectedLanguage: next, expanded: radarMode === "explore" }); }}><option value="es">Con titulares en español</option><option value="all">Todos los idiomas</option></select></label>
+              <div className="filter-row date-filter-row">
+                <label><span>DESDE (PUBLICACIÓN / DETECCIÓN)</span><input aria-label="Fecha inicial" type="date" value={dateFrom} max={dateTo || undefined} onChange={e => setDateFrom(e.target.value)}/></label>
+                <label><span>HASTA (INCLUSIVE)</span><input aria-label="Fecha final" type="date" value={dateTo} min={dateFrom || undefined} onChange={e => setDateTo(e.target.value)}/></label>
+              </div>
+              <label className="language-picker" htmlFor="language-filter"><span><Icon name="layers" size={15}/> Idioma de los titulares</span><select id="language-filter" value={language} onChange={e => { const next = e.target.value as "es" | "all"; setLanguage(next); void loadRadar({ query: searchText, selectedTopic: topic, selectedEvidence: evidenceFilter, selectedLanguage: next, dateFrom, dateTo, expanded: radarMode === "explore" }); }}><option value="es">Con titulares en español</option><option value="all">Todos los idiomas</option></select></label>
       <button type="submit" className="search-submit" disabled={isLoading}>Buscar eventos <Icon name="arrow" size={15}/></button>
             </form>
-            <div className="radar-results-heading"><div><span className="tiny-label">{radarMode === "top" ? "AGENDA PRIORIZADA" : "RESULTADOS DEL CORPUS"}</span><strong>{isLoading ? "Consultando…" : (radarMode === "top" ? "Top 5" : `${resultTotal} coincidencia${resultTotal === 1 ? "" : "s"}`)}</strong></div><button type="button" className="icon-button" title="Actualizar" aria-label="Actualizar agenda" onClick={() => void loadRadar({ query: searchText, selectedTopic: topic, selectedEvidence: evidenceFilter, selectedLanguage: language, expanded: radarMode === "explore" }, true)} disabled={isLoading}><Icon name="refresh" size={17}/></button></div>
+            <div className="radar-results-heading"><div><span className="tiny-label">{radarMode === "top" ? "AGENDA PRIORIZADA" : "RESULTADOS DEL CORPUS"}</span><strong>{isLoading ? "Consultando…" : (radarMode === "top" ? "Top 5" : `${resultTotal} coincidencia${resultTotal === 1 ? "" : "s"}`)}</strong></div><button type="button" className="icon-button" title="Actualizar" aria-label="Actualizar agenda" onClick={() => void loadRadar({ query: searchText, selectedTopic: topic, selectedEvidence: evidenceFilter, selectedLanguage: language, dateFrom, dateTo, expanded: radarMode === "explore" }, true)} disabled={isLoading}><Icon name="refresh" size={17}/></button></div>
             <div className="results-list" aria-live="polite">
               {isLoading && <div className="loading-box"><span className="spinner"/>Consultando el archivo de noticias…</div>}
-              {!isLoading && !agenda.length && <div className="empty-radar"><Icon name="search" size={24}/><strong>Sin coincidencias</strong><p>{searchDescription || "Prueba con otros términos o modifica los filtros."}</p><button type="button" onClick={() => { setSearchText(""); setTopic(""); setEvidenceFilter(""); void loadRadar({ selectedLanguage: language }); }}>Volver al Top 5</button></div>}
+              {!isLoading && !agenda.length && <div className="empty-radar"><Icon name="search" size={24}/><strong>Sin coincidencias</strong><p>{searchDescription || "Prueba con otros términos o modifica los filtros."}</p><button type="button" onClick={() => { setSearchText(""); setTopic(""); setDateFrom(""); setDateTo(""); setEvidenceFilter(""); void loadRadar({ selectedLanguage: language }); }}>Volver al Top 5</button></div>}
               {!isLoading && agenda.map((item, index) => {
                 const state = item.evidence_package.evidence_state;
                 return <button type="button" key={item.case_id} className={`radar-story ${selectedId === item.case_id ? "is-selected" : ""}`} onClick={() => void selectCase(item.case_id)} aria-current={selectedId === item.case_id ? "true" : undefined}>
@@ -643,7 +659,7 @@ export default function Home() {
             </>}
           </aside>
         </div>
-        <footer className="page-footer"><span>TVN MEDIA COPILOT · MESA DE REDACCIÓN</span><span>Fuentes públicas · Investigación asistida · Revisión obligatoria</span><span>La repetición de titulares no constituye corroboración independiente.</span></footer>
+        <footer className="page-footer"><span>MEDIA COPILOT · INTELIGENCIA INFORMATIVA</span><span>Fuentes públicas · Investigación asistida · Revisión obligatoria</span><span>La repetición de titulares no constituye corroboración independiente.</span></footer>
       </main>
     </div>
   );

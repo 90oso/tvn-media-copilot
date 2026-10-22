@@ -6,6 +6,7 @@ ausencia de resultados produce una abstención explícita, no una cifra inferida
 from __future__ import annotations
 
 import re
+from datetime import date
 import unicodedata
 
 import pandas as pd
@@ -75,12 +76,35 @@ def explore_events(
     evidence: str = "",
     language: str = "all",
     limit: int = 20,
+    date_from: date | None = None,
+    date_to: date | None = None,
 ) -> dict:
     news = repo.get_all_valid_news()
     col = _cluster_column(news)
     if news.empty or not col:
         return {"items": [], "count": 0, "total_matches": 0, "abstained": bool(question),
                 "note": "No hay noticias utilizables en el snapshot."}
+
+    if date_from or date_to:
+        # Fecha efectiva: publicación cuando existe; en su defecto detección.
+        # No se afirma que fecha_deteccion sea fecha de publicación.
+        pub = (pd.to_datetime(news["fecha_publicacion"], errors="coerce", utc=True)
+               if "fecha_publicacion" in news else
+               pd.Series(pd.NaT, index=news.index, dtype="datetime64[ns, UTC]"))
+        seen = (pd.to_datetime(news["fecha_deteccion"], errors="coerce", utc=True)
+                if "fecha_deteccion" in news else
+                pd.Series(pd.NaT, index=news.index, dtype="datetime64[ns, UTC]"))
+        effective = pub.fillna(seen)
+        mask = effective.notna()
+        if date_from:
+            mask &= effective >= pd.Timestamp(date_from.isoformat(), tz="UTC")
+        if date_to:
+            mask &= effective < pd.Timestamp(date_to.isoformat(), tz="UTC") + pd.Timedelta(days=1)
+        news = news.loc[mask].copy()
+        if news.empty:
+            return {"items": [], "count": 0, "total_matches": 0, "abstained": True,
+                    "note": "No hay coincidencias con fechas verificables en el intervalo seleccionado.",
+                    "search_mode": "lexical_metadata"}
 
     terms = search_terms(question)
     normalized_question = normalize(question)

@@ -153,3 +153,35 @@ def test_agenda_language_filter_is_opt_in_and_backward_compatible():
     assert len(all_cases) == 3
     assert len(spanish_cases) == 2
     assert all(item["headline"] and "Новости" not in item["headline"] for item in spanish_cases)
+
+
+def test_search_date_range_filters_by_publication_date():
+    from datetime import date
+    result = explore_events(StubRepo(), StubSettings(), question="empleo",
+                            date_from=date(2026,9,10), date_to=date(2026,9,10))
+    assert result["count"] == 1
+    none = explore_events(StubRepo(), StubSettings(), question="empleo",
+                          date_from=date(2026,9,11), date_to=date(2026,9,30))
+    assert none["count"] == 0
+    assert none["abstained"] is True
+
+
+def test_search_date_range_uses_detection_if_publication_missing():
+    from datetime import date
+    class DetectionRepo(StubRepo):
+        def get_all_valid_news(self):
+            frame = super().get_all_valid_news()
+            frame.loc[0, "fecha_publicacion"] = None
+            frame.loc[0, "fecha_deteccion"] = "2026-09-12T18:00:00Z"
+            return frame
+    result = explore_events(DetectionRepo(), StubSettings(), question="empleo",
+                            date_from=date(2026,9,12),date_to=date(2026,9,12))
+    assert result["count"] == 1
+    assert result["items"][0]["date_origin"] == "detección"
+
+
+def test_http_date_range_invalid_returns_422():
+    from fastapi.testclient import TestClient
+    from app.main import app
+    response = TestClient(app).get("/explore",params={"date_from":"2026-09-12","date_to":"2026-09-10"})
+    assert response.status_code == 422
