@@ -17,7 +17,7 @@ El proyecto original estuvo dirigido a TVN. La nueva presentación comercial no 
 
 ## Brechas técnicas para producción
 1. Fuentes por espacio de trabajo: URLs RSS, importación CSV, proveedores con licencias; configuración de periodo consultado y periodo de actualización.
-2. Servidor acepta filtros de fecha, términos y organización, no solo la interfaz demo. Recopilar metadatos de procedencia y fechas faltantes de modo explícito.
+2. **Implementado en esta rama:** filtros `date_from`/`date_to` del servidor y controles de búsqueda temporal en Next.js. **Pendiente:** filtros por organización, ingesta histórica configurable, recuperación de faltantes y calibración de precisión. No confundir fecha de detección con publicación.
 3. Separación multiempresa, permisos, SSO/MFA, cuotas, gestión de coste de LLM y almacenamiento persistente.
 4. Buscador reproducible: normalización de tildes, sinónimos, tokens, BM25/embeddings; tests en consultas donde hay coincidencias ("empleo") y falsos negativos.
 5. Deduplicación, agrupación y rankings calibrados con evaluación humana en datos del segmento objetivo.
