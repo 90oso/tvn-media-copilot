@@ -1,3 +1,15 @@
+# Media Copilot · línea comercial en evaluación
+
+Se conserva el repositorio histórico **TVN Media Copilot**, originalmente desarrollado para ese reto, pero la presentación comercial se plantea de forma independiente. **TVN RSS sigue siendo una fuente de la implementación actual, no un cliente ni una relación comercial implícita.**
+
+## Demostración comercial aislada
+
+[Abre la demo en `docs/index.html`](docs/index.html): perfiles para empresas, consultoras, independientes y redacciones; búsqueda por palabra, tema y rango de fechas; exploración de señales; evidencia, brechas y creación/exportación de un brief **ilustrativo, no generado por IA real**. Contenido 100 % ficticio.
+
+La aplicación Next.js existente continúa utilizando sus rutas reales y su propia cobertura de datos. **Los nuevos filtros de fecha y los perfiles de la demo no se han integrado aún al backend histórico.** Para vender el producto completo todavía hacen falta fuentes configurables por cliente, control de organizaciones, permisos, contratos de licencias de datos, alertas y mediciones por caso de uso.
+
+---
+
 # TVN Media Copilot
 
 Prototipo editorial para el reto **“De la señal a la decisión”**. Convierte noticias públicas e indicadores oficiales en una agenda priorizada, fichas de evidencia y borradores editoriales sujetos a revisión humana.
