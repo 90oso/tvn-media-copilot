@@ -24,3 +24,10 @@
 «Media Copilot transforma información pública en expedientes trazables y próximos pasos supervisados. Nació para apoyar decisiones editoriales; estamos validando su adaptación a inteligencia empresarial y análisis sectorial».
 
 La rama `feat/decision-intelligence-panacea` es aislada; no modificar `main` hasta que las pruebas y una revisión humana estén completas.
+
+## Iteración 2: investigación orquestada
+- Endpoint real `POST /research/investigate` con objetivo, perfil, fechas y límite de expedientes.
+- Flujo acotado de tres pasos: recuperación del corpus → inspección de evidencia → próximos pasos supervisados.
+- Devuelve trazabilidad de pasos, expedientes, estado de abstención y limitaciones explícitas.
+- Validaciones HTTP para fechas invertidas y objetivos fuera de límite.
+- **No es todavía un agente planificador autónomo**: no elige nuevas fuentes ni realiza navegación externa.
