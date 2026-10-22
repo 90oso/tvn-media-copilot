@@ -43,6 +43,7 @@ type CaseItem = {
   case_languages?: string[];
   evidence_package: EvidencePackage;
   attention: Attention;
+  decision_support?: { profile: string; recommended_next_step: string; assessment: string; limitations: string[]; options: {action:string;type:string}[]; requires_human_approval:boolean };
   workflow: { state: string; recommended_action: string; draft_enabled: boolean; publication_enabled: boolean; human_review?: HumanReview };
 };
 type DraftMode = "brief" | "script" | "digital";
@@ -237,6 +238,7 @@ function stateTone(value: string): "neutral" | "amber" | "green" {
 
 export default function Home() {
   const [agenda, setAgenda] = useState<CaseItem[]>([]);
+  const [decisionProfile, setDecisionProfile] = useState<"editorial" | "business" | "research">("editorial");
   const [selectedId, setSelectedId] = useState<string>("");
   const [detail, setDetail] = useState<CaseItem | null>(null);
   const [searchText, setSearchText] = useState("");
@@ -333,14 +335,14 @@ export default function Home() {
     const from = params?.dateFrom || "";
     const to = params?.dateTo || "";
     const lang = params?.selectedLanguage || "es";
-    const explore = !!params?.expanded || !!q || !!t || !!e || !!from || !!to;
+    const explore = decisionProfile !== "editorial" || !!params?.expanded || !!q || !!t || !!e || !!from || !!to;
     setIsLoading(true);
     setError("");
     setRadarMode(explore ? "explore" : "top");
     setSearchDescription("");
     try {
       const url = explore
-        ? `${API}/explore?${new URLSearchParams({ q, topic: t, evidence: e, language: lang, date_from: from, date_to: to, limit: "30" })}`
+        ? `${API}/explore?${new URLSearchParams({ q, topic: t, evidence: e, language: lang, profile: decisionProfile, ...(from ? {date_from: from} : {}), ...(to ? {date_to: to} : {}), limit: "30" })}`
         : `${API}/agenda?${new URLSearchParams({limit: "5", language: lang})}`;
       let result: SearchResult;
       let fromSnapshot = false;
@@ -558,11 +560,12 @@ export default function Home() {
       </header>
 
       <main className="main-area">
+        {detail?.decision_support && <section aria-label="Apoyo a decisiones" style={{padding:16,border:"1px solid #36536a",borderRadius:12,marginBottom:16}}><strong>Apoyo a decisiones · {detail.decision_support.profile}</strong><p>{detail.decision_support.assessment}</p><p><strong>Siguiente paso sugerido:</strong> {detail.decision_support.recommended_next_step}</p><small>Requiere revisión humana. No ejecuta decisiones automáticamente.</small></section>}
         <div className="page-intro">
           <div className="intro-main">
-            <div className="overline"><span className="overline-line"/> COPILOTO EDITORIAL <span className="intro-version">/ PANAMÁ</span></div>
-            <h1>La agenda, <em>bajo análisis.</em></h1>
-            <p>Temas priorizados, fuentes para contrastar y borradores sujetos a revisión editorial.</p>
+            <div className="overline"><span className="overline-line"/> INTELIGENCIA DE DECISIONES <span className="intro-version">/ PANAMÁ</span></div>
+            <h1>Información, <em>bajo análisis.</em></h1>
+            <p>Investigación asistida, acontecimientos priorizados y evidencias para decisiones humanas fundamentadas.</p>
           </div>
           <div className="edition-stamp"><span>ARCHIVO DE TRABAJO</span><strong>Panamá</strong><small>Datos públicos · Sin publicación automática</small></div>
         </div>
@@ -587,6 +590,9 @@ export default function Home() {
             <div className="column-caption"><span>01</span><p>RADAR DE NOTICIAS</p><Icon name="layers" size={16}/></div>
             <div className="radar-intro"><h2>¿Qué temas investigar?</h2><p>Explora las noticias y consulta las fuentes de cada expediente.</p></div>
             <form className="search-form" onSubmit={submitSearch}>
+              <label className="field-label" htmlFor="decision-profile">PERFIL DE INVESTIGACIÓN</label>
+              <select id="decision-profile" value={decisionProfile} onChange={e => setDecisionProfile(e.target.value as "editorial" | "business" | "research")}><option value="editorial">Medios y periodismo · original</option><option value="business">Empresa · señales externas</option><option value="research">Consultoría · investigación sectorial</option></select>
+              <p style={{fontSize:12,opacity:.8}}>El perfil adapta los siguientes pasos; no convierte la prioridad editorial en riesgo financiero.</p>
               <label className="field-label" htmlFor="editorial-query">BUSCAR TEMAS O TITULARES</label>
               <div className="search-box"><Icon name="search" size={17}/><input id="editorial-query" value={searchText} onChange={e => setSearchText(e.target.value)} placeholder="Empleo, turismo, Canal de Panamá…" maxLength={240}/><button type="submit" aria-label="Buscar eventos" disabled={isLoading}><Icon name="arrow" size={17}/></button></div>
               <div className="filter-row"><label><span>TEMA</span><select value={topic} onChange={e => setTopic(e.target.value)}><option value="">Todas</option><option value="economía">Economía</option><option value="logística">Canal / logística</option><option value="turismo">Turismo</option><option value="servicios públicos">Servicios públicos</option><option value="eventos naturales">Eventos naturales</option><option value="regulación">Regulación</option></select></label><label><span>EVIDENCIA</span><select value={evidenceFilter} onChange={e => setEvidenceFilter(e.target.value)}><option value="">Todos</option><option value="suficiente para el borrador">Suficiente</option><option value="parcial">Parcial</option><option value="insuficiente">Insuficiente</option></select></label></div>
