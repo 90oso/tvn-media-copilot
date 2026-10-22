@@ -18,6 +18,7 @@ def explore(
     evidence: str = Query("", max_length=80),
     language: Literal["es", "all"] = Query("all"),
     limit: int = Query(20, ge=1, le=30),
+    profile: Literal["editorial", "business", "research"] = Query("editorial"),
     date_from: date | None = Query(None),
     date_to: date | None = Query(None),
 ):
@@ -27,5 +28,5 @@ def explore(
     return explore_events(
         DuckDBRepository(settings.database_path), settings,
         question=q, topic=topic, evidence=evidence, language=language, limit=limit,
-        date_from=date_from, date_to=date_to,
+        date_from=date_from, date_to=date_to, profile=profile,
     )
