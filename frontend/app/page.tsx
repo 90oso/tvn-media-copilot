@@ -540,7 +540,7 @@ export default function Home() {
   return (
     <div className="app-shell" data-theme={theme}>
       <header className="masthead">
-        <div className="brand-lockup"><div className="brand-symbol" aria-hidden="true">tvn<span>•</span></div><div className="brand-lines"><strong>TVN MEDIA <small> / COPILOTO</small></strong><span>MESA DE REDACCIÓN</span></div></div>
+        <div className="brand-lockup"><div className="brand-symbol" aria-hidden="true">MC<span>•</span></div><div className="brand-lines"><strong>MEDIA COPILOT <small> / INTELIGENCIA</small></strong><span>SEÑALES · EVIDENCIA · DECISIONES</span></div></div>
         <nav className="masthead-nav" aria-label="Recorrido editorial"><a className="nav-on" href="#radar">01 · Radar</a><a href="#evidencia">02 · Fuentes</a><a href="#decision">03 · Revisión</a></nav>
         <div className="masthead-actions"><div className="api-indicator" title={version ? `API ${version}` : apiStatus}><span className={apiStatus === "API disponible" ? "online-dot" : "offline-dot"}/>{apiStatus === "API disponible" ? "Sistema disponible" : apiStatus}</div><button className="icon-button theme-toggle" type="button" aria-label={theme === "light" ? "Cambiar a modo oscuro" : "Cambiar a modo claro"} onClick={() => setTheme(v => v === "light" ? "dark" : "light")}><Icon name={theme === "light" ? "moon" : "sun"}/></button></div>
       </header>
@@ -643,7 +643,7 @@ export default function Home() {
             </>}
           </aside>
         </div>
-        <footer className="page-footer"><span>TVN MEDIA COPILOT · MESA DE REDACCIÓN</span><span>Fuentes públicas · Investigación asistida · Revisión obligatoria</span><span>La repetición de titulares no constituye corroboración independiente.</span></footer>
+        <footer className="page-footer"><span>MEDIA COPILOT · INTELIGENCIA INFORMATIVA</span><span>Fuentes públicas · Investigación asistida · Revisión obligatoria</span><span>La repetición de titulares no constituye corroboración independiente.</span></footer>
       </main>
     </div>
   );
