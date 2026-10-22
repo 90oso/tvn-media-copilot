@@ -78,6 +78,7 @@ def explore_events(
     limit: int = 20,
     date_from: date | None = None,
     date_to: date | None = None,
+    profile: str = "editorial",
 ) -> dict:
     news = repo.get_all_valid_news()
     col = _cluster_column(news)
@@ -139,6 +140,7 @@ def explore_events(
         )
         if evidence and entry["evidence_package"]["evidence_state"] != evidence:
             continue
+        entry["decision_support"] = decision_support(entry, profile)
         entry.update(_preview(preview_frame))
         entry["case_languages"] = case_languages(frame)
         entry["search_matches"] = hits
@@ -163,4 +165,46 @@ def explore_events(
             else "Búsqueda orientativa por términos en titulares/metadatos: no verifica hechos."
         ),
         "search_mode": "editorial_agenda" if agenda_intent else "lexical_metadata",
+    }
+
+
+def decision_support(entry: dict, profile: str) -> dict:
+    """Conservative, auditable decision framing; not autonomous business advice.
+
+    Never transform editorial priority into business impact probability.
+    Never claim external verification from a cluster score.
+    """
+    package = entry.get("evidence_package") or {}
+    state = str(package.get("evidence_state") or "desconocido")
+    missing = list(package.get("missing_information") or [])
+    contradictions = list(package.get("contradictions") or [])
+    provenance = int(package.get("independent_provenances") or 0)
+    supported = provenance >= 2 and not contradictions and not missing
+    actions = {
+        "editorial": ("Revisar las fuentes originales y decidir si abrir una investigación editorial.",
+                      "Solicitar corroboración adicional antes de publicar."),
+        "business": ("Asignar un responsable para evaluar la exposición real de la organización.",
+                     "Verificar el alcance geográfico, temporal y operativo antes de actuar."),
+        "research": ("Incluir el evento como señal documentada en el análisis sectorial.",
+                     "Ampliar la muestra y contrastar fuentes antes de formular conclusiones."),
+    }
+    primary, cautious = actions.get(profile, actions["editorial"])
+    return {
+        "profile": profile,
+        "assessment": "Evidencia preliminar; requiere validación humana.",
+        "evidence_state": state,
+        "independent_provenances": provenance,
+        "missing_information": missing,
+        "contradictions": contradictions,
+        "options": [
+            {"action": cautious, "type": "verification"},
+            {"action": primary, "type": "human_review"},
+        ],
+        "recommended_next_step": cautious if not supported else primary,
+        "limitations": [
+            "La prioridad editorial no mide impacto económico ni probabilidad de ocurrencia.",
+            "El corpus disponible puede ser incompleto o histórico.",
+            "No se ejecutan acciones externas ni se sustituyen decisiones profesionales.",
+        ],
+        "requires_human_approval": True,
     }
