@@ -4,3 +4,34 @@ html:has(.pi),body:has(.pi){height:auto!important;min-height:100%;overflow-y:aut
 .pi{height:auto;min-height:100vh;overflow:visible;align-items:stretch}
 .pi-main{min-height:100vh;align-self:flex-start}
 @media(min-width:701px){.pi-sidebar{position:sticky;top:0;height:100vh;min-height:0;overflow-y:auto;align-self:flex-start}}
+
+/* Panacea workspace v2 — guided, role-specific workflows */
+.pi-v2 .pi-journey{display:flex;align-items:center;gap:13px;margin:-12px 0 25px;color:#7894ad;font-size:11px;font-weight:750;letter-spacing:.12em;flex-wrap:wrap}
+.pi-v2 .pi-journey .is-current{color:#8bd5ff;border-bottom:2px solid #50b4f5;padding-bottom:7px}
+.pi-v2 .pi-workintro{border-left:3px solid #3c9cde;background:#0f2235;padding:17px 22px;margin-bottom:19px;border-radius:0 9px 9px 0}
+.pi-v2 .pi-workintro strong{font-size:15px}.pi-v2 .pi-workintro p{color:#9bb5cd;font-size:12px;line-height:1.6;margin:7px 0 0}
+.pi-v2 .pi-context{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:0 0 18px}
+.pi-v2 .pi-context label,.pi-v2 .pi-action-fields label{display:grid;gap:7px;color:#9eb8d0;font-size:11px}
+.pi-v2 .pi-context input,.pi-v2 .pi-action-fields input,.pi-v2 .pi-field textarea,.pi-v2 .pi-matrix-row input:not([type=radio]),.pi-v2 .pi-criteria input,.pi-v2 .pi-criteria select{width:100%;min-width:0;background:#0a192b;border:1px solid #33516a;color:#e5f2ff;border-radius:7px;padding:10px;font:inherit}
+.pi-v2 .pi-special{border-top:1px solid #2a4057;margin-top:22px;padding-top:6px}
+.pi-v2 .pi-special h3{color:#dceeff;font-size:15px;margin:20px 0 12px}
+.pi-v2 .pi-special p{line-height:1.65}
+.pi-v2 .pi-muted{color:#8da6bb!important;font-size:11px!important}
+.pi-v2 .pi-mini{display:flex;justify-content:space-between;gap:12px;padding:15px;background:#0a192a;border:1px solid #294057;border-radius:8px;font-size:12px;margin:15px 0}.pi-v2 .pi-mini span{color:#9cb2c9}
+.pi-v2 .pi-field{display:grid;gap:9px;margin:17px 0;font-size:12px;color:#c0d7e9}
+.pi-v2 .pi-field textarea{min-height:88px;resize:vertical;line-height:1.5}
+.pi-v2 .pi-primary,.pi-v2 .pi-secondary{display:block;width:100%;border:1px solid #4a9fdf;border-radius:8px;padding:13px 16px;margin-top:12px;text-align:center;font-weight:700;font-size:12px}
+.pi-v2 .pi-primary{background:#54b6f2;color:#08182a}.pi-v2 .pi-secondary{background:#122e46;color:#c6e7ff}
+.pi-v2 .pi-trace{margin:17px 0;padding:16px;border:1px solid #34526a;border-radius:8px;background:#0a1b2c;font-size:12px;color:#bad1e3}
+.pi-v2 .pi-trace p{border-bottom:1px solid #23394c;padding:8px 0;margin:4px 0}.pi-v2 .pi-trace small{display:block;color:#819fb8;line-height:1.6;margin-top:9px}
+.pi-v2 .pi-criteria{display:flex;align-items:center;gap:9px;margin:10px 0;flex-wrap:wrap}
+.pi-v2 .pi-criteria label{display:flex;align-items:center;gap:6px;color:#abc5db;font-size:10px}
+.pi-v2 .pi-criteria input{width:58px}.pi-v2 .pi-criteria select{width:55px;padding:7px}
+.pi-v2 .pi-matrix-row{border:1px solid #2a465d;border-radius:9px;padding:12px;margin:11px 0}.pi-v2 .pi-matrix-row.picked{border-color:#5caeec;background:#122b41}
+.pi-v2 .pi-matrix-row>label{display:flex;align-items:center;gap:9px}.pi-v2 .pi-matrix-row input[type=radio]{accent-color:#57b8f7}
+.pi-v2 .pi-matrix-row input:not([type=radio]){flex:1}
+.pi-v2 .pi-criteria strong{margin-left:auto;color:#91d8ff}
+.pi-v2 .pi-check{display:flex;align-items:flex-start;gap:11px;margin:13px 0;color:#c4d8e9;font-size:12px;line-height:1.4}.pi-v2 .pi-check input{accent-color:#50b3f1;margin-top:2px}
+.pi-v2 .pi-action-fields{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:20px 0}
+.pi-v2 .pi-detail{min-height:570px}
+@media(max-width:900px){.pi-v2 .pi-context{grid-template-columns:1fr}.pi-v2 .pi-action-fields{grid-template-columns:1fr}}
