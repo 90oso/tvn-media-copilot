@@ -43,6 +43,7 @@ type CaseItem = {
   case_languages?: string[];
   evidence_package: EvidencePackage;
   attention: Attention;
+  decision_support?: { profile: string; recommended_next_step: string; assessment: string; limitations: string[]; options: {action:string;type:string}[]; requires_human_approval:boolean };
   workflow: { state: string; recommended_action: string; draft_enabled: boolean; publication_enabled: boolean; human_review?: HumanReview };
 };
 type DraftMode = "brief" | "script" | "digital";
@@ -139,6 +140,8 @@ type StoredWorkspace = {
   selectedId: string;
   searchText: string;
   topic: string;
+  dateFrom: string;
+  dateTo: string;
   evidenceFilter: string;
   language: "es" | "all";
   radarMode: "top" | "explore";
@@ -168,6 +171,8 @@ function readSavedWorkspace(): StoredWorkspace | null {
     return {
       selectedId: typeof value.selectedId === "string" ? value.selectedId : "",
       searchText: typeof value.searchText === "string" ? value.searchText : "",
+      dateFrom: typeof value.dateFrom === "string" ? value.dateFrom : "",
+      dateTo: typeof value.dateTo === "string" ? value.dateTo : "",
       topic: typeof value.topic === "string" ? value.topic : "",
       evidenceFilter: typeof value.evidenceFilter === "string" ? value.evidenceFilter : "",
       language: value.language,
@@ -233,10 +238,15 @@ function stateTone(value: string): "neutral" | "amber" | "green" {
 
 export default function Home() {
   const [agenda, setAgenda] = useState<CaseItem[]>([]);
+  const [decisionProfile, setDecisionProfile] = useState<"editorial" | "business" | "research">("editorial");
+  const [researchBusy, setResearchBusy] = useState(false);
+  const [researchResult, setResearchResult] = useState<{status:string;steps:{tool:string;status:string;purpose:string}[];cases:CaseItem[];limitations:string[]} | null>(null);
   const [selectedId, setSelectedId] = useState<string>("");
   const [detail, setDetail] = useState<CaseItem | null>(null);
   const [searchText, setSearchText] = useState("");
   const [topic, setTopic] = useState("");
+  const [dateFrom, setDateFrom] = useState("");
+  const [dateTo, setDateTo] = useState("");
   const [evidenceFilter, setEvidenceFilter] = useState("");
   const [language, setLanguage] = useState<"es" | "all">("es");
   const [radarMode, setRadarMode] = useState<"top" | "explore">("top");
@@ -319,20 +329,22 @@ export default function Home() {
     }
   }, []);
 
-  const loadRadar = useCallback(async (params?: { query?: string; selectedTopic?: string; selectedEvidence?: string; selectedLanguage?: "es" | "all"; expanded?: boolean }, keepSelected = false) => {
+  const loadRadar = useCallback(async (params?: { query?: string; selectedTopic?: string; selectedEvidence?: string; selectedLanguage?: "es" | "all"; dateFrom?: string; dateTo?: string; expanded?: boolean }, keepSelected = false) => {
     const request = ++searchRequest.current;
     const q = params?.query?.trim() || "";
     const t = params?.selectedTopic || "";
     const e = params?.selectedEvidence || "";
+    const from = params?.dateFrom || "";
+    const to = params?.dateTo || "";
     const lang = params?.selectedLanguage || "es";
-    const explore = !!params?.expanded || !!q || !!t || !!e;
+    const explore = decisionProfile !== "editorial" || !!params?.expanded || !!q || !!t || !!e || !!from || !!to;
     setIsLoading(true);
     setError("");
     setRadarMode(explore ? "explore" : "top");
     setSearchDescription("");
     try {
       const url = explore
-        ? `${API}/explore?${new URLSearchParams({ q, topic: t, evidence: e, language: lang, limit: "30" })}`
+        ? `${API}/explore?${new URLSearchParams({ q, topic: t, evidence: e, language: lang, profile: decisionProfile, ...(from ? {date_from: from} : {}), ...(to ? {date_to: to} : {}), limit: "30" })}`
         : `${API}/agenda?${new URLSearchParams({limit: "5", language: lang})}`;
       let result: SearchResult;
       let fromSnapshot = false;
@@ -366,7 +378,7 @@ export default function Home() {
     } finally {
       if (request === searchRequest.current) setIsLoading(false);
     }
-  }, [selectCase]);
+  }, [selectCase, decisionProfile]);
 
   useEffect(() => {
     const refresh = () => { setIsOnline(navigator.onLine); setQueuedReviews(readPendingReviews().length); };
@@ -389,6 +401,8 @@ export default function Home() {
     if (saved) {
       setSearchText(saved.searchText);
       setTopic(saved.topic);
+      setDateFrom(saved.dateFrom);
+      setDateTo(saved.dateTo);
       setEvidenceFilter(saved.evidenceFilter);
       setLanguage(saved.language);
       setMode(saved.mode);
@@ -398,6 +412,8 @@ export default function Home() {
           query: saved.radarMode === "explore" ? saved.searchText : "",
           selectedTopic: saved.radarMode === "explore" ? saved.topic : "",
           selectedEvidence: saved.radarMode === "explore" ? saved.evidenceFilter : "",
+          dateFrom: saved.dateFrom,
+          dateTo: saved.dateTo,
           selectedLanguage: saved.language,
           expanded: saved.radarMode === "explore",
         }, Boolean(saved.selectedId));
@@ -414,10 +430,10 @@ export default function Home() {
     if (!workspaceReady) return;
     try {
       localStorage.setItem(WORKSPACE_STORAGE_KEY, JSON.stringify({
-        selectedId, searchText, topic, evidenceFilter, language, radarMode, mode,
+        selectedId, searchText, topic, dateFrom, dateTo, evidenceFilter, language, radarMode, mode,
       } satisfies StoredWorkspace));
     } catch { /* Navegación privada o almacenamiento no disponible. */ }
-  }, [workspaceReady, selectedId, searchText, topic, evidenceFilter, language, radarMode, mode]);
+  }, [workspaceReady, selectedId, searchText, topic, dateFrom, dateTo, evidenceFilter, language, radarMode, mode]);
 
   const selectedFromRadar = useMemo(() => agenda.find(x => x.case_id === selectedId), [agenda, selectedId]);
   const current = isCaseLoading ? null : (detail || selectedFromRadar);
@@ -432,7 +448,7 @@ export default function Home() {
 
   async function submitSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    await loadRadar({ query: searchText, selectedTopic: topic, selectedEvidence: evidenceFilter, selectedLanguage: language, expanded: true });
+    await loadRadar({ query: searchText, selectedTopic: topic, selectedEvidence: evidenceFilter, selectedLanguage: language, dateFrom, dateTo, expanded: true });
   }
   async function generateDraft() {
     if (!detail?.workflow?.draft_enabled) return;
@@ -540,17 +556,38 @@ export default function Home() {
   return (
     <div className="app-shell" data-theme={theme}>
       <header className="masthead">
-        <div className="brand-lockup"><div className="brand-symbol" aria-hidden="true">tvn<span>•</span></div><div className="brand-lines"><strong>TVN MEDIA <small> / COPILOTO</small></strong><span>MESA DE REDACCIÓN</span></div></div>
+        <div className="brand-lockup"><div className="brand-symbol" aria-hidden="true">MC<span>•</span></div><div className="brand-lines"><strong>MEDIA COPILOT <small> / INTELIGENCIA</small></strong><span>SEÑALES · EVIDENCIA · DECISIONES</span></div></div>
         <nav className="masthead-nav" aria-label="Recorrido editorial"><a className="nav-on" href="#radar">01 · Radar</a><a href="#evidencia">02 · Fuentes</a><a href="#decision">03 · Revisión</a></nav>
-        <div className="masthead-actions"><div className="api-indicator" title={version ? `API ${version}` : apiStatus}><span className={apiStatus === "API disponible" ? "online-dot" : "offline-dot"}/>{apiStatus === "API disponible" ? "Sistema disponible" : apiStatus}</div><button className="icon-button theme-toggle" type="button" aria-label={theme === "light" ? "Cambiar a modo oscuro" : "Cambiar a modo claro"} onClick={() => setTheme(v => v === "light" ? "dark" : "light")}><Icon name={theme === "light" ? "moon" : "sun"}/></button></div>
+        <div className="masthead-actions"><a href="/intelligence" style={{color:"#fff",background:"#1256b8",padding:"10px 14px",borderRadius:8,fontSize:12,fontWeight:700,textDecoration:"none",marginRight:10}}>✦ Panacea Intelligence ↗</a><div className="api-indicator" title={version ? `API ${version}` : apiStatus}><span className={apiStatus === "API disponible" ? "online-dot" : "offline-dot"}/>{apiStatus === "API disponible" ? "Sistema disponible" : apiStatus}</div><button className="icon-button theme-toggle" type="button" aria-label={theme === "light" ? "Cambiar a modo oscuro" : "Cambiar a modo claro"} onClick={() => setTheme(v => v === "light" ? "dark" : "light")}><Icon name={theme === "light" ? "moon" : "sun"}/></button></div>
       </header>
 
       <main className="main-area">
+        {detail?.decision_support && <section aria-label="Apoyo a decisiones" style={{padding:16,border:"1px solid #36536a",borderRadius:12,marginBottom:16}}><strong>Apoyo a decisiones · {detail.decision_support.profile}</strong><p>{detail.decision_support.assessment}</p><p><strong>Siguiente paso sugerido:</strong> {detail.decision_support.recommended_next_step}</p><small>Requiere revisión humana. No ejecuta decisiones automáticamente.</small></section>}
+        <section aria-label="Investigación orientada a decisiones" style={{padding:18,border:"1px solid #36536a",borderRadius:14,marginBottom:18}}>
+          <h2 style={{margin:"0 0 8px"}}>Investigación orientada a decisiones</h2>
+          <p style={{margin:"0 0 12px"}}>Introduce un objetivo y examina qué evidencia del corpus puede ayudarte a decidir. Sin acciones automáticas ni acceso a fuentes en vivo.</p>
+          <label htmlFor="research-objective">Objetivo de investigación</label>
+          <textarea id="research-objective" value={searchText} onChange={e=>setSearchText(e.target.value)} maxLength={240} rows={2} placeholder="¿Qué señales del sector logístico merecen seguimiento?..." style={{display:"block",width:"100%",padding:12,margin:"8px 0",borderRadius:8}} />
+          <button type="button" disabled={researchBusy || searchText.trim().length < 8} onClick={async()=>{
+            setResearchBusy(true);setResearchResult(null);setError("");
+            try{
+              const response=await fetch(`${API}/research/investigate`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({objective:searchText.trim(),profile:decisionProfile,limit:5,...(dateFrom?{date_from:dateFrom}:{}),...(dateTo?{date_to:dateTo}:{})})});
+              if(!response.ok)throw new Error(`Error de investigación HTTP ${response.status}`);
+              const data=await response.json();setResearchResult(data);
+            }catch(e){setError(errorMessage(e));}finally{setResearchBusy(false);}
+          }}>{researchBusy?"Investigando…":"Investigar con evidencias"}</button>
+          {researchResult && <div aria-live="polite" style={{marginTop:12}}>
+            <strong>{researchResult.cases.length} acontecimientos recuperados</strong>
+            <ol>{researchResult.steps.map(step=><li key={step.tool}>{step.purpose} · {step.status}</li>)}</ol>
+            {researchResult.cases.length===0?<p>Evidencia insuficiente en el corpus disponible. No se genera una conclusión.</p>:researchResult.cases.map(item=><article key={item.case_id} style={{padding:"12px 0",borderTop:"1px solid #36536a"}}><strong>{sourceHeadline(item)}</strong><p>{item.decision_support?.recommended_next_step || "Revisar las fuentes originales."}</p><button type="button" onClick={()=>void selectCase(item.case_id)}>Abrir expediente</button></article>)}
+            <small>{researchResult.limitations.join(" · ")}</small>
+          </div>}
+        </section>
         <div className="page-intro">
           <div className="intro-main">
-            <div className="overline"><span className="overline-line"/> COPILOTO EDITORIAL <span className="intro-version">/ PANAMÁ</span></div>
-            <h1>La agenda, <em>bajo análisis.</em></h1>
-            <p>Temas priorizados, fuentes para contrastar y borradores sujetos a revisión editorial.</p>
+            <div className="overline"><span className="overline-line"/> INTELIGENCIA DE DECISIONES <span className="intro-version">/ PANAMÁ</span></div>
+            <h1>Información, <em>bajo análisis.</em></h1>
+            <p>Investigación asistida, acontecimientos priorizados y evidencias para decisiones humanas fundamentadas.</p>
           </div>
           <div className="edition-stamp"><span>ARCHIVO DE TRABAJO</span><strong>Panamá</strong><small>Datos públicos · Sin publicación automática</small></div>
         </div>
@@ -575,16 +612,23 @@ export default function Home() {
             <div className="column-caption"><span>01</span><p>RADAR DE NOTICIAS</p><Icon name="layers" size={16}/></div>
             <div className="radar-intro"><h2>¿Qué temas investigar?</h2><p>Explora las noticias y consulta las fuentes de cada expediente.</p></div>
             <form className="search-form" onSubmit={submitSearch}>
+              <label className="field-label" htmlFor="decision-profile">PERFIL DE INVESTIGACIÓN</label>
+              <select id="decision-profile" value={decisionProfile} onChange={e => setDecisionProfile(e.target.value as "editorial" | "business" | "research")}><option value="editorial">Medios y periodismo · original</option><option value="business">Empresa · señales externas</option><option value="research">Consultoría · investigación sectorial</option></select>
+              <p style={{fontSize:12,opacity:.8}}>El perfil adapta los siguientes pasos; no convierte la prioridad editorial en riesgo financiero.</p>
               <label className="field-label" htmlFor="editorial-query">BUSCAR TEMAS O TITULARES</label>
               <div className="search-box"><Icon name="search" size={17}/><input id="editorial-query" value={searchText} onChange={e => setSearchText(e.target.value)} placeholder="Empleo, turismo, Canal de Panamá…" maxLength={240}/><button type="submit" aria-label="Buscar eventos" disabled={isLoading}><Icon name="arrow" size={17}/></button></div>
               <div className="filter-row"><label><span>TEMA</span><select value={topic} onChange={e => setTopic(e.target.value)}><option value="">Todas</option><option value="economía">Economía</option><option value="logística">Canal / logística</option><option value="turismo">Turismo</option><option value="servicios públicos">Servicios públicos</option><option value="eventos naturales">Eventos naturales</option><option value="regulación">Regulación</option></select></label><label><span>EVIDENCIA</span><select value={evidenceFilter} onChange={e => setEvidenceFilter(e.target.value)}><option value="">Todos</option><option value="suficiente para el borrador">Suficiente</option><option value="parcial">Parcial</option><option value="insuficiente">Insuficiente</option></select></label></div>
-              <label className="language-picker" htmlFor="language-filter"><span><Icon name="layers" size={15}/> Idioma de los titulares</span><select id="language-filter" value={language} onChange={e => { const next = e.target.value as "es" | "all"; setLanguage(next); void loadRadar({ query: searchText, selectedTopic: topic, selectedEvidence: evidenceFilter, selectedLanguage: next, expanded: radarMode === "explore" }); }}><option value="es">Con titulares en español</option><option value="all">Todos los idiomas</option></select></label>
+              <div className="filter-row date-filter-row">
+                <label><span>DESDE (PUBLICACIÓN / DETECCIÓN)</span><input aria-label="Fecha inicial" type="date" value={dateFrom} max={dateTo || undefined} onChange={e => setDateFrom(e.target.value)}/></label>
+                <label><span>HASTA (INCLUSIVE)</span><input aria-label="Fecha final" type="date" value={dateTo} min={dateFrom || undefined} onChange={e => setDateTo(e.target.value)}/></label>
+              </div>
+              <label className="language-picker" htmlFor="language-filter"><span><Icon name="layers" size={15}/> Idioma de los titulares</span><select id="language-filter" value={language} onChange={e => { const next = e.target.value as "es" | "all"; setLanguage(next); void loadRadar({ query: searchText, selectedTopic: topic, selectedEvidence: evidenceFilter, selectedLanguage: next, dateFrom, dateTo, expanded: radarMode === "explore" }); }}><option value="es">Con titulares en español</option><option value="all">Todos los idiomas</option></select></label>
       <button type="submit" className="search-submit" disabled={isLoading}>Buscar eventos <Icon name="arrow" size={15}/></button>
             </form>
-            <div className="radar-results-heading"><div><span className="tiny-label">{radarMode === "top" ? "AGENDA PRIORIZADA" : "RESULTADOS DEL CORPUS"}</span><strong>{isLoading ? "Consultando…" : (radarMode === "top" ? "Top 5" : `${resultTotal} coincidencia${resultTotal === 1 ? "" : "s"}`)}</strong></div><button type="button" className="icon-button" title="Actualizar" aria-label="Actualizar agenda" onClick={() => void loadRadar({ query: searchText, selectedTopic: topic, selectedEvidence: evidenceFilter, selectedLanguage: language, expanded: radarMode === "explore" }, true)} disabled={isLoading}><Icon name="refresh" size={17}/></button></div>
+            <div className="radar-results-heading"><div><span className="tiny-label">{radarMode === "top" ? "AGENDA PRIORIZADA" : "RESULTADOS DEL CORPUS"}</span><strong>{isLoading ? "Consultando…" : (radarMode === "top" ? "Top 5" : `${resultTotal} coincidencia${resultTotal === 1 ? "" : "s"}`)}</strong></div><button type="button" className="icon-button" title="Actualizar" aria-label="Actualizar agenda" onClick={() => void loadRadar({ query: searchText, selectedTopic: topic, selectedEvidence: evidenceFilter, selectedLanguage: language, dateFrom, dateTo, expanded: radarMode === "explore" }, true)} disabled={isLoading}><Icon name="refresh" size={17}/></button></div>
             <div className="results-list" aria-live="polite">
               {isLoading && <div className="loading-box"><span className="spinner"/>Consultando el archivo de noticias…</div>}
-              {!isLoading && !agenda.length && <div className="empty-radar"><Icon name="search" size={24}/><strong>Sin coincidencias</strong><p>{searchDescription || "Prueba con otros términos o modifica los filtros."}</p><button type="button" onClick={() => { setSearchText(""); setTopic(""); setEvidenceFilter(""); void loadRadar({ selectedLanguage: language }); }}>Volver al Top 5</button></div>}
+              {!isLoading && !agenda.length && <div className="empty-radar"><Icon name="search" size={24}/><strong>Sin coincidencias</strong><p>{searchDescription || "Prueba con otros términos o modifica los filtros."}</p><button type="button" onClick={() => { setSearchText(""); setTopic(""); setDateFrom(""); setDateTo(""); setEvidenceFilter(""); void loadRadar({ selectedLanguage: language }); }}>Volver al Top 5</button></div>}
               {!isLoading && agenda.map((item, index) => {
                 const state = item.evidence_package.evidence_state;
                 return <button type="button" key={item.case_id} className={`radar-story ${selectedId === item.case_id ? "is-selected" : ""}`} onClick={() => void selectCase(item.case_id)} aria-current={selectedId === item.case_id ? "true" : undefined}>
@@ -643,7 +687,7 @@ export default function Home() {
             </>}
           </aside>
         </div>
-        <footer className="page-footer"><span>TVN MEDIA COPILOT · MESA DE REDACCIÓN</span><span>Fuentes públicas · Investigación asistida · Revisión obligatoria</span><span>La repetición de titulares no constituye corroboración independiente.</span></footer>
+        <footer className="page-footer"><span>MEDIA COPILOT · INTELIGENCIA INFORMATIVA</span><span>Fuentes públicas · Investigación asistida · Revisión obligatoria</span><span>La repetición de titulares no constituye corroboración independiente.</span></footer>
       </main>
     </div>
   );

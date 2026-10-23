@@ -13,13 +13,14 @@ from app.api.routes.generation import router as generation_router
 from app.api.routes.agenda import router as agenda_router
 from app.api.routes.reviews import router as reviews_router
 from app.api.routes.explore import router as explore_router
+from app.api.routes.research import router as research_router
 from app.core.settings import get_settings
 
 settings = get_settings()
 app = FastAPI(
     title=settings.app_name,
     version=settings.app_version,
-    description="Copiloto editorial: evidencia, contextualización, priorización explicable y generación condicionada por evidencia.",
+    description="Copiloto de inteligencia de decisiones: análisis de evidencias, priorización y revisión humana.",
 )
 
 # Las URLs públicas deben indicarse explícitamente en el hosting.
@@ -33,6 +34,7 @@ origins.extend(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=list(dict.fromkeys(origins)),
+    allow_origin_regex=r"^https://(?:[a-z0-9-]+-)?tvn-media-copilot(?:-[a-z0-9-]+)?\.vercel\.app$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -47,5 +49,6 @@ for router in (
     generation_router,
     reviews_router,
     explore_router,
+    research_router,
 ):
     app.include_router(router)
