@@ -4,7 +4,7 @@ import Link from "next/link";
 import "./intelligence.css";
 type Case={case_id:string;headline?:string;source?:string;date?:string;news_count?:number;attention?:{score?:number;band?:string};evidence_package?:{evidence_state?:string;independent_provenances?:number;evidence?:{source_name:string;value:string;url?:string}[];missing_information?:string[];contradictions?:string[]};decision_support?:{recommended_next_step?:string;limitations?:string[];options?:{action:string;type:string}[]}};
 type Response={items?:Case[];total_matches?:number;abstained?:boolean;note?:string};
-const API=(process.env.NEXT_PUBLIC_API_URL||"").replace(/\/$/,"");
+const API=(process.env.NEXT_PUBLIC_API_URL || "https://tvn-media-copilot-api.onrender.com").replace(/\/$/,"");
 const profiles=[{id:"business",name:"Empresas",subtitle:"Riesgos y oportunidades"},{id:"research",name:"Investigación",subtitle:"Evidencia y contexto"},{id:"editorial",name:"Medios",subtitle:"Priorización editorial"}] as const;
 function dateText(value?:string){return value?new Date(value).toLocaleDateString("es-PA",{year:"numeric",month:"short",day:"numeric"}):"Fecha sin verificar"}
 export default function Intelligence(){
@@ -14,7 +14,7 @@ export default function Intelligence(){
  const [loading,setLoading]=useState(false);const [error,setError]=useState("");const [online,setOnline]=useState<boolean|null>(null);
  const [view,setView]=useState<"overview"|"investigate"|"decisions">("overview");
  const [investigation,setInvestigation]=useState<{status:string;cases:Case[];steps?:{tool:string;status:string;purpose:string}[];limitations?:string[]}|null>(null);
- const load=useCallback(async()=>{if(!API){setOnline(false);setError("Falta configurar NEXT_PUBLIC_API_URL en el despliegue. No se muestran resultados ficticios.");return;}setLoading(true);setError("");try{const params=new URLSearchParams({profile,limit:"30"});if(query.trim())params.set("q",query.trim());if(from)params.set("date_from",from);if(to)params.set("date_to",to);const res=await fetch(API+"/explore?"+params,{cache:"no-store"});if(!res.ok)throw new Error("La API respondió "+res.status);const data:Response=await res.json();setItems(data.items||[]);setOnline(true);setSelected(old=>data.items?.some(c=>c.case_id===old)?old:data.items?.[0]?.case_id||null);}catch(e){setOnline(false);setItems([]);setError("No fue posible recuperar evidencias: "+String(e instanceof Error?e.message:e));}finally{setLoading(false)}},[profile,query,from,to]);
+ const load=useCallback(async()=>{setLoading(true);setError("");try{const params=new URLSearchParams({profile,limit:"30"});if(query.trim())params.set("q",query.trim());if(from)params.set("date_from",from);if(to)params.set("date_to",to);const res=await fetch(API+"/explore?"+params,{cache:"no-store"});if(!res.ok)throw new Error("La API respondió "+res.status);const data:Response=await res.json();setItems(data.items||[]);setOnline(true);setSelected(old=>data.items?.some(c=>c.case_id===old)?old:data.items?.[0]?.case_id||null);}catch(e){setOnline(false);setItems([]);setError("No fue posible recuperar evidencias: "+String(e instanceof Error?e.message:e));}finally{setLoading(false)}},[profile,query,from,to]);
  useEffect(()=>{void load()},[load]);
  const current=useMemo(()=>items.find(x=>x.case_id===selected),[items,selected]);
  const evidenced=items.filter(x=>(x.evidence_package?.evidence?.length||0)>0).length;
